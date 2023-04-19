@@ -6,13 +6,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use TmrwLife\NtakGuru\Entities\CheckIn;
-use TmrwLife\NtakGuru\Entities\CheckOut;
-use TmrwLife\NtakGuru\Entities\Reservation;
-use TmrwLife\NtakGuru\Entities\RoomChange;
-use TmrwLife\NtakGuru\Interfaces\Arrayable;
+use GuzzleHttp\RequestOptions;
 
-class NtakGuru
+abstract class NtakGuru
 {
     protected Client $client;
 
@@ -22,11 +18,6 @@ class NtakGuru
         HandlerStack $handlerStack = null
     ) {
         $this->setupClient($handlerStack);
-    }
-
-    public static function accommodation(string $accommodationId, string $accessToken): static
-    {
-        return new static($accommodationId, $accessToken);
     }
 
     public static function fake(array $response, int $status = 200): static
@@ -40,47 +31,51 @@ class NtakGuru
         return new static('not important', 'not important', $handlerStack);
     }
 
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function checkIn(CheckIn $entity): array
+    public static function setup(string $accommodationId, string $accessToken): static
     {
-        return $this->sendRequest($entity, 'check-in');
+        return new static($accommodationId, $accessToken);
     }
 
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function checkOut(CheckOut $entity): array
+    protected function delete(string $endpoint): void
     {
-        return $this->sendRequest($entity, 'check-out');
+        $this->client->delete($endpoint);
     }
 
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function reservation(Reservation $entity): array
+    protected function get(string $endpoint, array $data = []): array
     {
-        return $this->sendRequest($entity, 'reservation');
+        $response = $this->client->get($endpoint, [
+            RequestOptions::QUERY => $data,
+        ]);
+
+        return json_decode($response->getBody(), true);
     }
 
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function roomChange(RoomChange $entity): array
+    protected function post(string $endpoint, array $data): array
     {
-        return $this->sendRequest($entity, 'room-change');
+        $response = $this->client->post($endpoint, [
+            RequestOptions::JSON => $data,
+        ]);
+
+        return json_decode($response->getBody(), true);
     }
 
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function sendRequest(Arrayable $entity, string $endpoint): array
+    protected function put(string $endpoint, array $data): array
     {
-        $data = Crypt::seal($entity);
-
-        $response = $this->client
-            ->post("v1/accommodations/$this->accommodationId/reports/$endpoint", $data);
+        $response = $this->client->put($endpoint, [
+            RequestOptions::JSON => $data,
+        ]);
 
         return json_decode($response->getBody(), true);
     }

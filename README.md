@@ -26,23 +26,23 @@ composer require tmrw-life/ntak-guru-php-sdk
 $accommodationId = '00000000-0000-0000-0000-0000000'; // Provided by NTAK.guru
 $accessToken = '<your-access-token>';
 
-$ntakGuru = \TmrwLife\NtakGuru\NtakGuru::accommodation($accommodationId, $accessToken);
+$reporting = \TmrwLife\NtakGuru\Reporting::setup($accommodationId, $accessToken);
 
 // Check-in report
 $checkIn = (new \TmrwLife\NtakGuru\Entities\CheckIn())->setAttribute('...');
-$response = $ntakGuru->checkIn($checkIn);
+$response = $reporting->checkIn($checkIn);
 
 // Check-out report
 $checkOut = (new \TmrwLife\NtakGuru\Entities\CheckOut())->setAttribute('...');
-$response = $ntakGuru->checkOut($checkOut);
+$response = $reporting->checkOut($checkOut);
 
 // Reservation report
 $reservation = (new \TmrwLife\NtakGuru\Entities\Reservation())->setAttribute('...');
-$response = $ntakGuru->reservation($reservation);
+$response = $reporting->reservation($reservation);
 
 // Room change report
 $roomChange = (new \TmrwLife\NtakGuru\Entities\RoomChange())->setAttribute('...');
-$response = $ntakGuru->roomChange($roomChange);
+$response = $reporting->roomChange($roomChange);
 ```
 
 ### Entity builders
