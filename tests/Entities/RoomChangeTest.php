@@ -6,7 +6,7 @@ use TmrwLife\NtakGuru\Entities\Guest;
 use TmrwLife\NtakGuru\Entities\ResidentialUnit;
 use TmrwLife\NtakGuru\Entities\RoomChange;
 use TmrwLife\NtakGuru\Enums\Gender;
-use TmrwLife\NtakGuru\Enums\ResidentialUnit as ResidentialUnitType;
+use TmrwLife\NtakGuru\Enums\ResidentialUnitType;
 use TmrwLife\NtakGuru\Enums\TouristTax;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;

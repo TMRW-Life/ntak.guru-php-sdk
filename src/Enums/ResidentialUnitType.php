@@ -4,7 +4,7 @@ namespace TmrwLife\NtakGuru\Enums;
 
 use ArchTech\Enums\Values;
 
-enum ResidentialUnit: string
+enum ResidentialUnitType: string
 {
     use Values;
 

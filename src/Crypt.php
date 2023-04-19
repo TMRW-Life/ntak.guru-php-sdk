@@ -3,7 +3,6 @@
 namespace TmrwLife\NtakGuru;
 
 use OpenSSLAsymmetricKey;
-use TmrwLife\NtakGuru\Interfaces\Arrayable;
 
 class Crypt
 {
@@ -26,14 +25,14 @@ class Crypt
         return json_decode($decrypted, true);
     }
 
-    public static function seal(Arrayable $data): array
+    public static function seal(array $data): array
     {
         $ivLength = openssl_cipher_iv_length('AES-256-CBC') ?: 16;
 
         $iv = openssl_random_pseudo_bytes($ivLength);
 
         openssl_seal(
-            data: json_encode($data->toArray()),
+            data: json_encode($data),
             sealed_data: $sealed,
             encrypted_keys: $encryptedKeys,
             public_key: [self::loadPublicKey()],

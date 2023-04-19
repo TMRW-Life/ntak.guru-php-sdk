@@ -6,7 +6,7 @@ use TmrwLife\NtakGuru\Entities\CheckOut;
 use TmrwLife\NtakGuru\Entities\Guest;
 use TmrwLife\NtakGuru\Entities\ResidentialUnit;
 use TmrwLife\NtakGuru\Enums\Gender;
-use TmrwLife\NtakGuru\Enums\ResidentialUnit as ResidentialUnitType;
+use TmrwLife\NtakGuru\Enums\ResidentialUnitType;
 use TmrwLife\NtakGuru\Enums\TouristTax;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
@@ -34,7 +34,7 @@ class CheckOutTest extends TestCase
             ->setDoubleBedCount($double = $this->faker->randomNumber(1))
             ->setTrundleBedCount($trundle = $this->faker->randomNumber(1));
 
-        $checkout = (new CheckOut())
+        $checkOut = (new CheckOut())
             ->setReservationNumber($reservationNumber = $this->faker->numerify('#####'))
             ->setOccurredAt($occurredAt = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->addGuest($guest)
@@ -62,6 +62,6 @@ class CheckOutTest extends TestCase
                 'singleBedCount' => $single,
                 'doubleBedCount' => $double,
             ],
-        ], $checkout->toArray());
+        ], $checkOut->toArray());
     }
 }

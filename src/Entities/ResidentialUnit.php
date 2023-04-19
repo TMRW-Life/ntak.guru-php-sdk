@@ -2,7 +2,7 @@
 
 namespace TmrwLife\NtakGuru\Entities;
 
-use TmrwLife\NtakGuru\Enums\ResidentialUnit as ResidentialUnitType;
+use TmrwLife\NtakGuru\Enums\ResidentialUnitType as ResidentialUnitType;
 use TmrwLife\NtakGuru\Interfaces\Arrayable;
 
 class ResidentialUnit implements Arrayable
