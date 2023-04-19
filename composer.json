@@ -1,11 +1,14 @@
 {
     "name": "tmrw-life/ntak-guru-php-sdk",
-    "description": "This is my package ntak-guru-php-sdk",
+    "description": "PHP SDK for NTAK.guru API",
     "keywords": [
-        "TMRW-Life",
-        "ntak-guru-php-sdk"
+        "tmrw",
+        "tmrw-life",
+        "ntak",
+        "php",
+        "sdk"
     ],
-    "homepage": "https://github.com/tmrw-life/ntak-guru-php-sdk",
+    "homepage": "https://github.com/TMRW-Life/ntak.guru-php-sdk",
     "license": "MIT",
     "authors": [
         {
@@ -15,11 +18,15 @@
         }
     ],
     "require": {
-        "php": "^8.1"
+        "php": "^8.1",
+        "ext-openssl": "*",
+        "archtechx/enums": "^0.3.2",
+        "guzzlehttp/guzzle": "^7.5"
     },
     "require-dev": {
-        "laravel/pint": "^1.8",
-        "phpunit/phpunit": "^10.1",
+        "fakerphp/faker": "^1.21",
+        "laravel/pint": "^1.9",
+        "phpunit/phpunit": "^9.6",
         "spatie/ray": "^1.37"
     },
     "autoload": {
@@ -34,7 +41,6 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-            "test-coverage": "vendor/bin/phpunit --coverage",
         "format": "vendor/bin/pint"
     },
     "config": {
