@@ -3,7 +3,7 @@
 namespace TmrwLife\NtakGuru\Entities;
 
 use TmrwLife\NtakGuru\Enums\MarketSegment;
-use TmrwLife\NtakGuru\Enums\ResidentialUnit as ResidentialUnitEnum;
+use TmrwLife\NtakGuru\Enums\ResidentialUnitType as ResidentialUnitEnum;
 use TmrwLife\NtakGuru\Enums\SalesChannel;
 use TmrwLife\NtakGuru\Interfaces\Arrayable;
 

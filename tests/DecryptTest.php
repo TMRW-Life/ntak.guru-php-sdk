@@ -4,7 +4,7 @@ namespace TmrwLife\NtakGuru\Tests;
 
 use TmrwLife\NtakGuru\Crypt;
 use TmrwLife\NtakGuru\Enums\MarketSegment;
-use TmrwLife\NtakGuru\Enums\ResidentialUnit;
+use TmrwLife\NtakGuru\Enums\ResidentialUnitType;
 use TmrwLife\NtakGuru\Enums\SalesChannel;
 
 class DecryptTest extends TestCase
@@ -26,7 +26,7 @@ class DecryptTest extends TestCase
         $this->assertSame(SalesChannel::DIRECTLY_ONLINE->value, $context['salesChannel']);
         $this->assertSame(43215.17, $context['grossAmount']);
         $this->assertSame('LY', $context['nationality']);
-        $this->assertSame(ResidentialUnit::JUNIOR_SUITE->value, $context['bookedResidentialUnits'][0]['type']);
+        $this->assertSame(ResidentialUnitType::JUNIOR_SUITE->value, $context['bookedResidentialUnits'][0]['type']);
         $this->assertSame(3, $context['bookedResidentialUnits'][0]['capacity']);
     }
 

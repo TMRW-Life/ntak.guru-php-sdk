@@ -77,7 +77,7 @@ For example:
 use TmrwLife\NtakGuru\Entities\Reservation;
 use TmrwLife\NtakGuru\Enums\SalesChannel;
 use TmrwLife\NtakGuru\Enums\MarketSegment;
-use TmrwLife\NtakGuru\Enums\ResidentialUnit;
+use TmrwLife\NtakGuru\Enums\ResidentialUnitType;
 
 $reservation = (new Reservation())
             ->setReservationNumber(23597)
@@ -91,7 +91,7 @@ $reservation = (new Reservation())
             ->setMarketSegment(MarketSegment::BUSINESS_GROUP)
             ->setGrossAmount(98700)
             ->setGuestCount(2)
-            ->addBookedResidentialUnits(ResidentialUnit::APARTMENT, 2);
+            ->addBookedResidentialUnits(ResidentialUnitType::APARTMENT, 2);
 ```
 
 ## Testing

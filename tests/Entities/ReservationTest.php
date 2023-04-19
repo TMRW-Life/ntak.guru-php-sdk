@@ -4,7 +4,7 @@ namespace TmrwLife\NtakGuru\Tests\Entities;
 
 use TmrwLife\NtakGuru\Entities\Reservation;
 use TmrwLife\NtakGuru\Enums\MarketSegment;
-use TmrwLife\NtakGuru\Enums\ResidentialUnit;
+use TmrwLife\NtakGuru\Enums\ResidentialUnitType;
 use TmrwLife\NtakGuru\Enums\SalesChannel;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
@@ -27,7 +27,7 @@ class ReservationTest extends TestCase
             ->setMarketSegment($marketSegment = MarketSegment::BUSINESS_GROUP)
             ->setGrossAmount($grossAmount = $this->faker->randomFloat(2, 0, 1000))
             ->setGuestCount($guestCount = $this->faker->randomNumber(1))
-            ->addBookedResidentialUnits(ResidentialUnit::APARTMENT, $capacity = $this->faker->randomNumber(1));
+            ->addBookedResidentialUnits(ResidentialUnitType::APARTMENT, $capacity = $this->faker->randomNumber(1));
 
         $this->assertSame([
             'reservationNumber' => $reservationNumber,
@@ -43,7 +43,7 @@ class ReservationTest extends TestCase
             'guestCount' => $guestCount,
             'bookedResidentialUnits' => [
                 [
-                    'type' => ResidentialUnit::APARTMENT->value,
+                    'type' => ResidentialUnitType::APARTMENT->value,
                     'capacity' => $capacity,
                 ],
             ],
