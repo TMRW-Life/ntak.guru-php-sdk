@@ -34,7 +34,7 @@ class CheckOutTest extends TestCase
             ->setDoubleBedCount($double = $this->faker->randomNumber(1))
             ->setTrundleBedCount($trundle = $this->faker->randomNumber(1));
 
-        $checkout = (new CheckOut())
+        $checkOut = (new CheckOut())
             ->setReservationNumber($reservationNumber = $this->faker->numerify('#####'))
             ->setOccurredAt($occurredAt = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->addGuest($guest)
@@ -62,6 +62,6 @@ class CheckOutTest extends TestCase
                 'singleBedCount' => $single,
                 'doubleBedCount' => $double,
             ],
-        ], $checkout->toArray());
+        ], $checkOut->toArray());
     }
 }
