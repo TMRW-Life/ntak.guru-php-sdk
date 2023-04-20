@@ -77,9 +77,9 @@ class ResidentialUnitNight implements Arrayable
     {
         return [
             'dayUse' => $this->dayUse,
-            'expenses' => array_map(static fn(Expense $expense) => $expense->toArray(), $this->expenses),
-            'guests' => array_map(static fn(Guest $guest) => $guest->toArray(), $this->guests),
-            'loads' => array_map(static fn(Load $load) => $load->toArray(), $this->loads),
+            'expenses' => array_map(static fn (Expense $expense) => $expense->toArray(), $this->expenses),
+            'guests' => array_map(static fn (Guest $guest) => $guest->toArray(), $this->guests),
+            'loads' => array_map(static fn (Load $load) => $load->toArray(), $this->loads),
             'marketSegment' => $this->marketSegment->value,
             'reservationNumber' => $this->reservationNumber,
             'residentialUnit' => $this->residentialUnit->toArray(),
