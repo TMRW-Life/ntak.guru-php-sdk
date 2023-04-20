@@ -56,7 +56,7 @@ abstract class NtakGuru
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function post(string $endpoint, array $data): array
+    protected function post(string $endpoint, array $data = []): array
     {
         $response = $this->client->post($endpoint, [
             RequestOptions::JSON => $data,
