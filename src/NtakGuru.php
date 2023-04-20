@@ -12,11 +12,8 @@ abstract class NtakGuru
 {
     protected Client $client;
 
-    public function __construct(
-        protected string $accommodationId,
-        protected string $accessToken,
-        HandlerStack $handlerStack = null
-    ) {
+    public function __construct(protected string $accessToken, HandlerStack $handlerStack = null)
+    {
         $this->setupClient($handlerStack);
     }
 
@@ -28,12 +25,12 @@ abstract class NtakGuru
 
         $handlerStack = HandlerStack::create($mock);
 
-        return new static('not important', 'not important', $handlerStack);
+        return new static('not important', $handlerStack);
     }
 
-    public static function setup(string $accommodationId, string $accessToken): static
+    public static function setup(string $accessToken): static
     {
-        return new static($accommodationId, $accessToken);
+        return new static($accessToken);
     }
 
     /**

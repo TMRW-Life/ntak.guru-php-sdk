@@ -26,23 +26,23 @@ composer require tmrw-life/ntak-guru-php-sdk
 $accommodationId = '00000000-0000-0000-0000-0000000'; // Provided by NTAK.guru
 $accessToken = '<your-access-token>';
 
-$reporting = \TmrwLife\NtakGuru\Reporting::setup($accommodationId, $accessToken);
+$reporting = \TmrwLife\NtakGuru\Reporting::setup($accessToken);
 
 // Check-in report
 $checkIn = (new \TmrwLife\NtakGuru\Entities\CheckIn())->setAttribute('...');
-$response = $reporting->checkIn($checkIn);
+$response = $reporting->checkIn($accommodationId, $checkIn);
 
 // Check-out report
 $checkOut = (new \TmrwLife\NtakGuru\Entities\CheckOut())->setAttribute('...');
-$response = $reporting->checkOut($checkOut);
+$response = $reporting->checkOut($accommodationId, $checkOut);
 
 // Reservation report
 $reservation = (new \TmrwLife\NtakGuru\Entities\Reservation())->setAttribute('...');
-$response = $reporting->reservation($reservation);
+$response = $reporting->reservation($accommodationId, $reservation);
 
 // Room change report
 $roomChange = (new \TmrwLife\NtakGuru\Entities\RoomChange())->setAttribute('...');
-$response = $reporting->roomChange($roomChange);
+$response = $reporting->roomChange($accommodationId, $roomChange);
 ```
 
 ### Entity builders
@@ -91,7 +91,7 @@ $reservation = (new Reservation())
             ->setMarketSegment(MarketSegment::BUSINESS_GROUP)
             ->setGrossAmount(98700)
             ->setGuestCount(2)
-            ->addBookedResidentialUnits(ResidentialUnitType::APARTMENT, 2);
+            ->addBookedResidentialUnits(type: ResidentialUnitType::APARTMENT, capacity: 2);
 ```
 
 ## Testing
