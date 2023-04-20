@@ -22,7 +22,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: curl, mbstring, bcmath, intl, gd, exif, iconv, fileinfo
           coverage: none
 
       - name: Setup problem matchers
