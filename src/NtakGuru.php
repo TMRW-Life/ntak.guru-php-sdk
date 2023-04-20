@@ -17,7 +17,7 @@ abstract class NtakGuru
         $this->setupClient($handlerStack);
     }
 
-    public static function fake(array $response, int $status = 200): static
+    public static function fake(?array $response, int $status = 200): static
     {
         $mock = new MockHandler([
             new Response($status, [], json_encode($response)),
@@ -62,7 +62,7 @@ abstract class NtakGuru
             RequestOptions::JSON => $data,
         ]);
 
-        return json_decode($response->getBody(), true);
+        return json_decode($response->getBody(), true) ?? [];
     }
 
     /**
