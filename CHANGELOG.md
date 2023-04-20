@@ -2,7 +2,7 @@
 
 All notable changes to `ntak-guru-php-sdk` will be documented in this file.
 
-## V1.0.0 - 2023-04-20
+## V1.1.0 - 2023-04-20
 
 #Added
 
