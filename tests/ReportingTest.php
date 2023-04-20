@@ -46,7 +46,7 @@ class ReportingTest extends TestCase
             ->addGuest($guest)
             ->setOccupiedResidentialUnit($unit);
 
-        $ntakGuru = Reporting::fake([
+        $reporting = Reporting::fake([
             'payload' => [
                 'id' => $id = $this->faker->uuid(),
                 'messageId' => $messageId = $this->faker->uuid(),
@@ -58,7 +58,7 @@ class ReportingTest extends TestCase
             ],
         ]);
 
-        $report = $ntakGuru->checkIn($checkIn);
+        $report = $reporting->checkIn($this->faker->uuid(), $checkIn);
 
         $this->assertSame($id, $report['payload']['id']);
         $this->assertSame($messageId, $report['payload']['messageId']);
@@ -94,7 +94,7 @@ class ReportingTest extends TestCase
             ->addGuest($guest)
             ->setAbandonedResidentialUnit($unit);
 
-        $ntakGuru = Reporting::fake([
+        $reporting = Reporting::fake([
             'payload' => [
                 'id' => $id = $this->faker->uuid(),
                 'messageId' => $messageId = $this->faker->uuid(),
@@ -106,7 +106,7 @@ class ReportingTest extends TestCase
             ],
         ]);
 
-        $report = $ntakGuru->checkOut($checkOut);
+        $report = $reporting->checkOut($this->faker->uuid(), $checkOut);
 
         $this->assertSame($id, $report['payload']['id']);
         $this->assertSame($messageId, $report['payload']['messageId']);
@@ -133,7 +133,7 @@ class ReportingTest extends TestCase
             ->setGuestCount($this->faker->randomNumber(1))
             ->addBookedResidentialUnits(ResidentialUnitType::APARTMENT, $this->faker->randomNumber(1));
 
-        $ntakGuru = Reporting::fake([
+        $reporting = Reporting::fake([
             'payload' => [
                 'id' => $id = $this->faker->uuid(),
                 'messageId' => $messageId = $this->faker->uuid(),
@@ -145,7 +145,7 @@ class ReportingTest extends TestCase
             ],
         ]);
 
-        $report = $ntakGuru->reservation($reservation);
+        $report = $reporting->reservation($this->faker->uuid(), $reservation);
 
         $this->assertSame($id, $report['payload']['id']);
         $this->assertSame($messageId, $report['payload']['messageId']);
@@ -190,7 +190,7 @@ class ReportingTest extends TestCase
             ->setOccupiedResidentialUnit($unit1)
             ->setAbandonedResidentialUnit($unit2);
 
-        $ntakGuru = Reporting::fake([
+        $reporting = Reporting::fake([
             'payload' => [
                 'id' => $id = $this->faker->uuid(),
                 'messageId' => $messageId = $this->faker->uuid(),
@@ -202,7 +202,7 @@ class ReportingTest extends TestCase
             ],
         ]);
 
-        $report = $ntakGuru->roomChange($roomChange);
+        $report = $reporting->roomChange($this->faker->uuid(), $roomChange);
 
         $this->assertSame($id, $report['payload']['id']);
         $this->assertSame($messageId, $report['payload']['messageId']);
@@ -229,9 +229,9 @@ class ReportingTest extends TestCase
             ->setGuestCount($this->faker->randomNumber(1))
             ->addBookedResidentialUnits(ResidentialUnitType::APARTMENT, $this->faker->randomNumber(1));
 
-        $ntakGuru = Reporting::fake([], 404);
+        $reporting = Reporting::fake([], 404);
 
         $this->expectException(ClientException::class);
-        $ntakGuru->reservation($reservation);
+        $reporting->reservation($this->faker->uuid(), $reservation);
     }
 }

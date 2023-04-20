@@ -12,40 +12,40 @@ class Reporting extends NtakGuru
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function checkIn(CheckIn $entity): array
+    public function checkIn(string $accommodation, CheckIn $entity): array
     {
         $data = Crypt::seal($entity->toArray());
 
-        return $this->post("/v1/accommodations/$this->accommodationId/reports/check-in", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/check-in", $data);
     }
 
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function checkOut(CheckOut $entity): array
+    public function checkOut(string $accommodation, CheckOut $entity): array
     {
         $data = Crypt::seal($entity->toArray());
 
-        return $this->post("/v1/accommodations/$this->accommodationId/reports/check-out", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/check-out", $data);
     }
 
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function reservation(Reservation $entity): array
+    public function reservation($accommodation, Reservation $entity): array
     {
         $data = Crypt::seal($entity->toArray());
 
-        return $this->post("/v1/accommodations/$this->accommodationId/reports/reservation", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/reservation", $data);
     }
 
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function roomChange(RoomChange $entity): array
+    public function roomChange($accommodation, RoomChange $entity): array
     {
         $data = Crypt::seal($entity->toArray());
 
-        return $this->post("/v1/accommodations/$this->accommodationId/reports/room-change", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/room-change", $data);
     }
 }
