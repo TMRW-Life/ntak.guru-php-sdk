@@ -111,21 +111,24 @@ You can use the entity builders to create the entities.
 
 We covered the 5 main report type with the entity builders.
 
-| Name        | Builder                                  |
-|-------------|------------------------------------------|
-| Check-in    | `\TmrwLife\NtakGuru\Entites\CheckIn`     |
-| Check-out   | `\TmrwLife\NtakGuru\Entites\CheckOut`    |
-| Reservation | `\TmrwLife\NtakGuru\Entites\Reservation` |
-| Room change | `\TmrwLife\NtakGuru\Entites\RoomChange`  |
-| Daily close | soon                                     |
+| Name        | Builder                                   |
+|-------------|-------------------------------------------|
+| Check-in    | `\TmrwLife\NtakGuru\Entities\CheckIn`     |
+| Check-out   | `\TmrwLife\NtakGuru\Entities\CheckOut`    |
+| Reservation | `\TmrwLife\NtakGuru\Entities\Reservation` |
+| Room change | `\TmrwLife\NtakGuru\Entities\RoomChange`  |
+| Daily close | `\TmrwLife\NtakGuru\Entities\DailyClose`  |
 
 And a few more for properties.
 
-| Name             | Builder                                      |
-|------------------|----------------------------------------------|
-| Guest            | `\TmrwLife\NtakGuru\Entites\Guest`           |
-| Residential unit | `\TmrwLife\NtakGuru\Entites\ResidentialUnit` |
-| soon             | More coming soon with Daily close            |
+| Name                   | Builder                                            |
+|------------------------|----------------------------------------------------|
+| Guest                  | `\TmrwLife\NtakGuru\Entities\Guest`                |
+| Residential unit       | `\TmrwLife\NtakGuru\Entities\ResidentialUnit`      |
+| Daily close sale       | `\TmrwLife\NtakGuru\Entities\DailyCloseSale`       |
+| Expense                | `\TmrwLife\NtakGuru\Entities\Expense`              |
+| Load                   | `\TmrwLife\NtakGuru\Entities\Load`                 |
+| Residential unit night | `\TmrwLife\NtakGuru\Entities\ResidentialUnitNight` |
 
 We also have some enums to help you with the attributes.
 
@@ -160,6 +163,63 @@ $reservation = (new Reservation())
     ->setGrossAmount(98700)
     ->setGuestCount(2)
     ->addBookedResidentialUnits(type: ResidentialUnitType::APARTMENT, capacity: 2);
+```
+
+### Daily close response
+
+In order to respond to the daily close request, you can use the `DailyClose` entity builder class.
+
+```php
+use TmrwLife\NtakGuru\Crypt;
+use TmrwLife\NtakGuru\Entities\CheckOutDaySale;
+use TmrwLife\NtakGuru\Entities\DailyClose;
+use TmrwLife\NtakGuru\Entities\Expense;
+use TmrwLife\NtakGuru\Entities\Load;
+use TmrwLife\NtakGuru\Entities\ResidentialUnit;
+use TmrwLife\NtakGuru\Entities\ResidentialUnitNight;
+
+$dailyClose = (new DailyClose())
+    ->setClosedDay('2023-04-20')
+    ->setResidentialUnits(
+        all: 15,
+        ooo: 0,
+        oos: 2,
+        occupied: 10,
+        available: 3,
+    )
+    ->addAfterStayExpense(new Expense())
+    ->addAfterStayLoad(new Load())
+    ->addCheckOutDaySale(new CheckOutDaySale())
+    ->addOtherExpense(new Expense())
+    ->addOtherLoad(new Load())
+    ->addOutOfServiceResidentialUnit(new ResidentialUnit())
+    ->addResidentialUnitNight(new ResidentialUnitNight());
+
+$data = Crypt::seal($dailyClose->toArray());
+
+return $data; // JSON response to NTAK.guru
+```
+
+Or if the accommodation is no operating
+
+```php
+use TmrwLife\NtakGuru\Crypt;
+use TmrwLife\NtakGuru\Entities\DailyClose;
+
+$dailyClose = (new DailyClose())
+    ->setClosedDay('2023-04-20')
+    ->setResidentialUnits(
+        all: $all = $this->faker->randomDigit(),
+        ooo: $ooo = $this->faker->randomDigit(),
+        oos: $oos = $this->faker->randomDigit(),
+        occupied: $occupied = $this->faker->randomDigit(),
+        available: $available = $this->faker->randomDigit(),
+    )
+    ->accommodationNotOperating();
+
+$data = Crypt::seal($dailyClose->toArray());
+
+return $data; // JSON response to NTAK.guru
 ```
 
 ## Testing
