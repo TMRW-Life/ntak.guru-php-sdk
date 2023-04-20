@@ -62,7 +62,7 @@ abstract class NtakGuru
             RequestOptions::JSON => $data,
         ]);
 
-        return json_decode($response->getBody(), true);
+        return json_decode($response->getBody(), true) ?? [];
     }
 
     /**
