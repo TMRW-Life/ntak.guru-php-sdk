@@ -2,6 +2,12 @@
 
 All notable changes to `ntak-guru-php-sdk` will be documented in this file.
 
+## v1.2.0 - 2023-05-02
+
+### Added
+
+- Added validtion class for development (https://github.com/TMRW-Life/ntak.guru-php-sdk/pull/9)
+
 ## V1.1.0 - 2023-04-20
 
 #Added
