@@ -243,9 +243,6 @@ if (!$validator->validate()) {
 
 # ... validation passed
 ```
-    // handle validation errors
-}
-```
 
 ## Testing
 

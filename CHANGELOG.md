@@ -6,11 +6,11 @@ All notable changes to `ntak-guru-php-sdk` will be documented in this file.
 
 ### Added
 
-- Added validtion class for development (https://github.com/TMRW-Life/ntak.guru-php-sdk/pull/9)
+- Added validation class for development (https://github.com/TMRW-Life/ntak.guru-php-sdk/pull/9)
 
-## V1.1.0 - 2023-04-20
+## v1.1.0 - 2023-04-20
 
-#Added
+### Added
 
 - Daily close builder (https://github.com/TMRW-Life/ntak.guru-php-sdk/pull/7)
 
