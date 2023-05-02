@@ -9,29 +9,29 @@ use TmrwLife\NtakGuru\Interfaces\Arrayable;
 
 class Reservation implements Arrayable
 {
-    protected string $arrival;
+    protected ?string $arrival = null;
 
-    protected array $bookedResidentialUnits;
+    protected array $bookedResidentialUnits = [];
 
-    protected bool $cancelled;
+    protected ?bool $cancelled = null;
 
-    protected string $departure;
+    protected ?string $departure = null;
 
-    protected float $grossAmount;
+    protected ?float $grossAmount = null;
 
-    protected int $guestCount;
+    protected ?int $guestCount = null;
 
-    protected MarketSegment $marketSegment;
+    protected ?MarketSegment $marketSegment = null;
 
-    protected string $nationality;
+    protected ?string $nationality = null;
 
-    protected string $occurredAt;
+    protected ?string $occurredAt = null;
 
-    protected int|string $reservationNumber;
+    protected int|string|null $reservationNumber = null;
 
-    protected string $reservedAt;
+    protected string $reservedAt = '';
 
-    protected SalesChannel $salesChannel;
+    protected ?SalesChannel $salesChannel = null;
 
     public function setArrival(string $arrival): Reservation
     {
@@ -130,8 +130,8 @@ class Reservation implements Arrayable
             'nationality' => $this->nationality,
             'arrival' => $this->arrival,
             'departure' => $this->departure,
-            'salesChannel' => $this->salesChannel->value,
-            'marketSegment' => $this->marketSegment->value,
+            'salesChannel' => $this->salesChannel?->value,
+            'marketSegment' => $this->marketSegment?->value,
             'grossAmount' => $this->grossAmount,
             'guestCount' => $this->guestCount,
             'bookedResidentialUnits' => $this->bookedResidentialUnits,
