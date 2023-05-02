@@ -6,13 +6,13 @@ use TmrwLife\NtakGuru\Interfaces\Arrayable;
 
 class CheckIn implements Arrayable
 {
-    protected array $guests;
+    protected array $guests = [];
 
-    protected ResidentialUnit $occupiedResidentialUnit;
+    protected ?ResidentialUnit $occupiedResidentialUnit = null;
 
-    protected string $occurredAt;
+    protected ?string $occurredAt = null;
 
-    protected int|string $reservationNumber;
+    protected int|string|null $reservationNumber = null;
 
     public function addGuest(Guest $guest): CheckIn
     {
@@ -48,7 +48,7 @@ class CheckIn implements Arrayable
             'reservationNumber' => $this->reservationNumber,
             'occurredAt' => $this->occurredAt,
             'guests' => array_map(static fn (Guest $guest) => $guest->toArray(), $this->guests),
-            'occupiedResidentialUnit' => $this->occupiedResidentialUnit->toArray(),
+            'occupiedResidentialUnit' => $this->occupiedResidentialUnit?->toArray(),
         ];
     }
 }
