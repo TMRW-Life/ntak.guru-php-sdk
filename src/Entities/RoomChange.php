@@ -9,7 +9,7 @@ class RoomChange implements Arrayable
 {
     protected ?ResidentialUnitAlias $abandonedResidentialUnit = null;
 
-    protected array $guests = [];
+    protected ?array $guests = null;
 
     protected ?ResidentialUnitAlias $occupiedResidentialUnit = null;
 
@@ -57,7 +57,7 @@ class RoomChange implements Arrayable
         return [
             'reservationNumber' => $this->reservationNumber,
             'occurredAt' => $this->occurredAt,
-            'guests' => array_map(static fn (Guest $guest) => $guest->toArray(), $this->guests),
+            'guests' => $this->guests ? array_map(static fn (Guest $guest) => $guest->toArray(), $this->guests) : null,
             'abandonedResidentialUnit' => $this->abandonedResidentialUnit?->toArray(),
             'occupiedResidentialUnit' => $this->occupiedResidentialUnit?->toArray(),
         ];

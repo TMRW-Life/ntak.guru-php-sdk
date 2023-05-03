@@ -7,20 +7,20 @@ use TmrwLife\NtakGuru\Interfaces\Arrayable;
 class DailyClose implements Arrayable
 {
     protected bool $accommodationNotOperating = false;
-    protected array $afterStayExpenses = [];
-    protected array $afterStayLoads = [];
-    protected array $checkOutDaySales = [];
-    protected string $closedDay;
-    protected array $otherExpenses = [];
-    protected array $otherLoads = [];
-    protected array $outOfServiceResidentialUnits = [];
-    protected array $residentialUnitNights = [];
+    protected ?array $afterStayExpenses = null;
+    protected ?array $afterStayLoads = null;
+    protected ?array $checkOutDaySales = null;
+    protected ?string $closedDay = null;
+    protected ?array $otherExpenses = null;
+    protected ?array $otherLoads = null;
+    protected ?array $outOfServiceResidentialUnits = null;
+    protected ?array $residentialUnitNights = null;
     protected array $residentialUnits = [
-        'all' => 0,
-        'ooo' => 0,
-        'oos' => 0,
-        'occupied' => 0,
-        'available' => 0,
+        'all' => null,
+        'ooo' => null,
+        'oos' => null,
+        'occupied' => null,
+        'available' => null,
     ];
 
     public function accommodationNotOperating(): DailyClose
@@ -110,35 +110,35 @@ class DailyClose implements Arrayable
         }
 
         return [
-            'afterStayExpenses' => array_map(
+            'afterStayExpenses' => $this->afterStayExpenses ? array_map(
                 static fn (Expense $expense) => $expense->toArray(),
                 $this->afterStayExpenses
-            ),
-            'afterStayLoads' => array_map(
+            ) : null,
+            'afterStayLoads' => $this->afterStayLoads ? array_map(
                 static fn (Load $load) => $load->toArray(),
                 $this->afterStayLoads
-            ),
-            'checkOutDaySales' => array_map(
+            ) : null,
+            'checkOutDaySales' => $this->checkOutDaySales ? array_map(
                 static fn (CheckOutDaySale $checkOutDaySale) => $checkOutDaySale->toArray(),
                 $this->checkOutDaySales
-            ),
+            ) : null,
             'closedDay' => $this->closedDay,
-            'otherExpenses' => array_map(
+            'otherExpenses' => $this->otherExpenses ? array_map(
                 static fn (Expense $expense) => $expense->toArray(),
                 $this->otherExpenses
-            ),
-            'otherLoads' => array_map(
+            ) : null,
+            'otherLoads' => $this->otherLoads ? array_map(
                 static fn (Load $load) => $load->toArray(),
                 $this->otherLoads
-            ),
-            'outOfServiceResidentialUnits' => array_map(
+            ) : null,
+            'outOfServiceResidentialUnits' => $this->outOfServiceResidentialUnits ? array_map(
                 static fn (ResidentialUnit $residentialUnit) => $residentialUnit->toArray(),
                 $this->outOfServiceResidentialUnits
-            ),
-            'residentialUnitNights' => array_map(
+            ) : null,
+            'residentialUnitNights' => $this->residentialUnitNights ? array_map(
                 static fn (ResidentialUnitNight $residentialUnitNight) => $residentialUnitNight->toArray(),
                 $this->residentialUnitNights
-            ),
+            ) : null,
             'residentialUnits' => $this->residentialUnits,
         ];
     }

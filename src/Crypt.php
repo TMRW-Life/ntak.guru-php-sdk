@@ -49,7 +49,7 @@ class Crypt
 
     protected static function loadPublicKey(): OpenSSLAsymmetricKey|false
     {
-        $path = sprintf('%1$s%2$s..%2$sopenssl%2$spublic.key', __DIR__, DIRECTORY_SEPARATOR);
+        $path = dirname(__DIR__).DIRECTORY_SEPARATOR.'openssl'.DIRECTORY_SEPARATOR.'public.key';
 
         $fp = fopen($path, 'rb');
 
