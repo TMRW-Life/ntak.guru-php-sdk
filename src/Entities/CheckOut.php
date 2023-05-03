@@ -8,7 +8,7 @@ class CheckOut implements Arrayable
 {
     protected ?ResidentialUnit $abandonedResidentialUnit = null;
 
-    protected array $guests = [];
+    protected ?array $guests = null;
 
     protected ?string $occurredAt = null;
 
@@ -47,7 +47,7 @@ class CheckOut implements Arrayable
         return [
             'reservationNumber' => $this->reservationNumber,
             'occurredAt' => $this->occurredAt,
-            'guests' => array_map(static fn (Guest $guest) => $guest->toArray(), $this->guests),
+            'guests' => $this->guests ? array_map(static fn (Guest $guest) => $guest->toArray(), $this->guests) : null,
             'abandonedResidentialUnit' => $this->abandonedResidentialUnit?->toArray(),
         ];
     }
