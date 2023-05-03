@@ -27,25 +27,25 @@ class DailyCloseTest extends TestCase
     {
         $afterStayExpense = (new Expense())
             ->setAmount($afterStayExpenseAmount = $this->faker->randomFloat())
-            ->setDate($afterStayExpenseDate = $this->faker->date())
+            ->setDate($afterStayExpenseDate = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setPaymentOption($afterStayExpensePaymentOption = PaymentOption::CARD);
 
         $afterStayLoad = (new Load())
             ->setAmount($afterStayLoadAmount = $this->faker->randomFloat())
             ->setCategory($afterStayLoadCategory = ChargeItemCategory::FEE)
-            ->setDate($afterStayLoadDate = $this->faker->date())
+            ->setDate($afterStayLoadDate = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setIsTouristTax($afterStayLoadIsTouristTax = $this->faker->boolean())
             ->setTaxPercentage($afterStayLoadTaxPercentage = $this->faker->numberBetween(0, 100));
 
         $checkOutDaySaleExpense = (new Expense())
             ->setAmount($checkOutDaySaleExpenseAmount = $this->faker->randomFloat())
-            ->setDate($checkOutDaySaleExpenseDate = $this->faker->date())
+            ->setDate($checkOutDaySaleExpenseDate = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setPaymentOption($checkOutDaySaleExpensePaymentOption = PaymentOption::CASH);
 
         $checkOutDaySaleLoad = (new Load())
             ->setAmount($checkOutDaySaleLoadAmount = $this->faker->randomFloat())
             ->setCategory($checkOutDaySaleLoadCategory = ChargeItemCategory::DRINK)
-            ->setDate($checkOutDaySaleLoadDate = $this->faker->date())
+            ->setDate($checkOutDaySaleLoadDate = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setIsTouristTax($checkOutDaySaleLoadIsTouristTax = $this->faker->boolean())
             ->setTaxPercentage($checkOutDaySaleLoadTaxPercentage = $this->faker->numberBetween(0, 100));
 
@@ -67,13 +67,13 @@ class DailyCloseTest extends TestCase
 
         $otherExpense = (new Expense())
             ->setAmount($otherExpenseAmount = $this->faker->randomFloat())
-            ->setDate($otherExpenseDate = $this->faker->date())
+            ->setDate($otherExpenseDate = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setPaymentOption($otherExpensePaymentOption = PaymentOption::ADDITIONAL);
 
         $otherLoad = (new Load())
             ->setAmount($otherLoadAmount = $this->faker->randomFloat())
             ->setCategory($otherLoadCategory = ChargeItemCategory::WELLNESS)
-            ->setDate($otherLoadDate = $this->faker->date())
+            ->setDate($otherLoadDate = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setTaxPercentage($otherLoadTaxPercentage = $this->faker->numberBetween(0, 100));
 
         $outOfServiceResidentialUnit = (new ResidentialUnit())
@@ -85,7 +85,7 @@ class DailyCloseTest extends TestCase
             ->setTrundleBedCount($outOfServiceResidentialUnitTrundleBedCount = $this->faker->randomDigit());
 
         $residentialUnitNightExpense = (new Expense())
-            ->setDate($residentialUnitNightExpenseDate = $this->faker->date())
+            ->setDate($residentialUnitNightExpenseDate = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setAmount($residentialUnitNightExpenseAmount = $this->faker->randomFloat())
             ->setPaymentOption($residentialUnitNightExpensePaymentOption = PaymentOption::SZEP)
             ->setPaymentOptionSubtype($residentialUnitNightExpensePaymentOptionSubtype = $this->faker->word());
@@ -102,7 +102,7 @@ class DailyCloseTest extends TestCase
         $residentialUnitNightLoad = (new Load())
             ->setAmount($residentialUnitNightLoadAmount = $this->faker->randomFloat())
             ->setCategory($residentialUnitNightLoadCategory = ChargeItemCategory::DRINK)
-            ->setDate($residentialUnitNightLoadDate = $this->faker->date())
+            ->setDate($residentialUnitNightLoadDate = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setIsTouristTax($residentialUnitNightLoadIsTouristTax = $this->faker->boolean())
             ->setTaxPercentage($residentialUnitNightLoadTaxPercentage = $this->faker->numberBetween(0, 100));
 
