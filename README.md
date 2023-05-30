@@ -245,6 +245,52 @@ if (!$validator->validate()) {
 # ... validation passed
 ```
 
+## VIZA
+
+### Sending report
+
+```php
+use TmrwLife\NtakGuru\Entities\Ntak\CheckIn;
+use TmrwLife\NtakGuru\Entities\Ntak\CheckOut;
+use TmrwLife\NtakGuru\Services\Reporting\Viza;
+
+$accommodationId = '00000000-0000-0000-0000-0000000'; // Provided by NTAK.guru
+
+$reporting = Viza::setup('<your-access-token>');
+
+// Check-in report
+$checkIn = (new CheckIn())->setAttribute('...');
+$response = $reporting->checkIn($accommodationId, $checkIn);
+
+// Check-out report
+$checkOut = (new CheckOut())->setAttribute('...');
+$response = $reporting->checkOut($accommodationId, $checkOut);
+
+// Fetch status
+$response = $reporting->status($accommodationId);
+
+// Fetch unsent data
+$response = $reporting->unsentData($accommodationId);
+```
+
+### Entity builders
+
+You can use the entity builders to create the entities.
+
+We covered the 2 main report type with the entity builders.
+
+| Name        | Builder                                     |
+|-------------|---------------------------------------------|
+| Check-in    | `\TmrwLife\NtakGuru\Entities\Viza\CheckIn`  |
+| Check-out   | `\TmrwLife\NtakGuru\Entities\Viza\CheckOut` |
+
+And a few more for properties.
+
+| Name                   | Builder                                          |
+|------------------------|--------------------------------------------------|
+| Guest                  | `\TmrwLife\NtakGuru\Entities\Viza\Guest`         |
+| Guest Document         | `\TmrwLife\NtakGuru\Entities\Ntak\GuestDocument` |
+
 ## Testing
 
 ```bash
