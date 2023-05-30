@@ -33,7 +33,7 @@ $accommodation = (new AccommodationEntity())
     ->setPostcode('M1 1AA')
     ->setLocality('Budapest');
 
-$gateway = \TmrwLife\NtakGuru\Accommodation::setup('<your-access-token>');
+$gateway = \TmrwLife\NtakGuru\Services\Accommodation::setup('<your-access-token>');
 
 // Create accommodation
 $response = $gateway->store($accommodation);
@@ -56,7 +56,7 @@ $response = $gateway->deactivate($accommodationId);
 ### Certificates
 
 ```php
-use TmrwLife\NtakGuru\Certificate;
+use TmrwLife\NtakGuru\Services\Certificate;
 
 $accommodationId = '00000000-0000-0000-0000-0000000'; // Provided by NTAK.guru
 
@@ -78,15 +78,15 @@ $gateway->destroy($accommodationId);
 ### Sending report
 
 ```php
-use TmrwLife\NtakGuru\Entities\CheckIn;
-use TmrwLife\NtakGuru\Entities\CheckOut;
-use TmrwLife\NtakGuru\Entities\Reservation;
-use TmrwLife\NtakGuru\Entities\RoomChange;
-use TmrwLife\NtakGuru\Reporting;
+use TmrwLife\NtakGuru\Entities\Ntak\CheckIn;
+use TmrwLife\NtakGuru\Entities\Ntak\CheckOut;
+use TmrwLife\NtakGuru\Entities\Ntak\Reservation;
+use TmrwLife\NtakGuru\Entities\Ntak\RoomChange;
+use TmrwLife\NtakGuru\Services\Reporting\Ntak;
 
 $accommodationId = '00000000-0000-0000-0000-0000000'; // Provided by NTAK.guru
 
-$reporting = Reporting::setup('<your-access-token>');
+$reporting = Ntak::setup('<your-access-token>');
 
 // Check-in report
 $checkIn = (new CheckIn())->setAttribute('...');
@@ -111,30 +111,31 @@ You can use the entity builders to create the entities.
 
 We covered the 5 main report type with the entity builders.
 
-| Name        | Builder                                   |
-|-------------|-------------------------------------------|
-| Check-in    | `\TmrwLife\NtakGuru\Entities\CheckIn`     |
-| Check-out   | `\TmrwLife\NtakGuru\Entities\CheckOut`    |
-| Reservation | `\TmrwLife\NtakGuru\Entities\Reservation` |
-| Room change | `\TmrwLife\NtakGuru\Entities\RoomChange`  |
-| Daily close | `\TmrwLife\NtakGuru\Entities\DailyClose`  |
+| Name        | Builder                                        |
+|-------------|------------------------------------------------|
+| Check-in    | `\TmrwLife\NtakGuru\Entities\Ntak\CheckIn`     |
+| Check-out   | `\TmrwLife\NtakGuru\Entities\Ntak\CheckOut`    |
+| Reservation | `\TmrwLife\NtakGuru\Entities\Ntak\Reservation` |
+| Room change | `\TmrwLife\NtakGuru\Entities\Ntak\RoomChange`  |
+| Daily close | `\TmrwLife\NtakGuru\Entities\Ntak\DailyClose`  |
 
 And a few more for properties.
 
-| Name                   | Builder                                            |
-|------------------------|----------------------------------------------------|
-| Guest                  | `\TmrwLife\NtakGuru\Entities\Guest`                |
-| Residential unit       | `\TmrwLife\NtakGuru\Entities\ResidentialUnit`      |
-| Daily close sale       | `\TmrwLife\NtakGuru\Entities\DailyCloseSale`       |
-| Expense                | `\TmrwLife\NtakGuru\Entities\Expense`              |
-| Load                   | `\TmrwLife\NtakGuru\Entities\Load`                 |
-| Residential unit night | `\TmrwLife\NtakGuru\Entities\ResidentialUnitNight` |
+| Name                   | Builder                                                 |
+|------------------------|---------------------------------------------------------|
+| Guest                  | `\TmrwLife\NtakGuru\Entities\Ntak\Guest`                |
+| Residential unit       | `\TmrwLife\NtakGuru\Entities\Ntak\ResidentialUnit`      |
+| Daily close sale       | `\TmrwLife\NtakGuru\Entities\DailyCloseSale`            |
+| Expense                | `\TmrwLife\NtakGuru\Entities\Ntak\Expense`              |
+| Load                   | `\TmrwLife\NtakGuru\Entities\Ntak\Load`                 |
+| Residential unit night | `\TmrwLife\NtakGuru\Entities\Ntak\ResidentialUnitNight` |
 
 We also have some enums to help you with the attributes.
 
 | Name                 | Enum                                          |
 |----------------------|-----------------------------------------------|
 | Charge item category | `\TmrwLife\NtakGuru\Enums\ChargeItemCategory` |
+| DocumentType         | `\TmrwLife\NtakGuru\Enums\DocumentType`       |
 | Gender               | `\TmrwLife\NtakGuru\Enums\Gender`             |
 | Market segment       | `\TmrwLife\NtakGuru\Enums\MarketSegment`      |
 | Payment option       | `\TmrwLife\NtakGuru\Enums\PaymentOption`      |
@@ -145,10 +146,10 @@ We also have some enums to help you with the attributes.
 For example:
 
 ```php
-use TmrwLife\NtakGuru\Entities\Reservation;
-use TmrwLife\NtakGuru\Enums\SalesChannel;
+use TmrwLife\NtakGuru\Entities\Ntak\Reservation;
 use TmrwLife\NtakGuru\Enums\MarketSegment;
 use TmrwLife\NtakGuru\Enums\ResidentialUnitType;
+use TmrwLife\NtakGuru\Enums\SalesChannel;
 
 $reservation = (new Reservation())
     ->setReservationNumber(23597)
@@ -171,12 +172,12 @@ In order to respond to the daily close request, you can use the `DailyClose` ent
 
 ```php
 use TmrwLife\NtakGuru\Crypt;
-use TmrwLife\NtakGuru\Entities\CheckOutDaySale;
-use TmrwLife\NtakGuru\Entities\DailyClose;
-use TmrwLife\NtakGuru\Entities\Expense;
-use TmrwLife\NtakGuru\Entities\Load;
-use TmrwLife\NtakGuru\Entities\ResidentialUnit;
-use TmrwLife\NtakGuru\Entities\ResidentialUnitNight;
+use TmrwLife\NtakGuru\Entities\Ntak\CheckOutDaySale;
+use TmrwLife\NtakGuru\Entities\Ntak\DailyClose;
+use TmrwLife\NtakGuru\Entities\Ntak\Expense;
+use TmrwLife\NtakGuru\Entities\Ntak\Load;
+use TmrwLife\NtakGuru\Entities\Ntak\ResidentialUnit;
+use TmrwLife\NtakGuru\Entities\Ntak\ResidentialUnitNight;
 
 $dailyClose = (new DailyClose())
     ->setClosedDay('2023-04-20')
@@ -204,7 +205,7 @@ Or if the accommodation is no operating
 
 ```php
 use TmrwLife\NtakGuru\Crypt;
-use TmrwLife\NtakGuru\Entities\DailyClose;
+use TmrwLife\NtakGuru\Entities\Ntak\DailyClose;
 
 $dailyClose = (new DailyClose())
     ->setClosedDay('2023-04-20')
@@ -229,8 +230,8 @@ You can validate the request data with the `Validator` class.
 Since we can not provide staging/sandbox environment, this will help you to test your code in development.
 
 ```php
-use TmrwLife\NtakGuru\Entities\Reservation;
-use TmrwLife\NtakGuru\Validation\Validator;
+use TmrwLife\NtakGuru\Entities\Ntak\Reservation;
+use TmrwLife\NtakGuru\Validation\Ntak\Validator;
 
 $reservation = new Reservation();
 
