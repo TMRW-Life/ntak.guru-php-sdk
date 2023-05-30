@@ -2,12 +2,7 @@
 
 namespace TmrwLife\NtakGuru\Tests\Validation\Viza;
 
-use TmrwLife\NtakGuru\Entities\Viza\CheckIn;
 use TmrwLife\NtakGuru\Entities\Viza\CheckOut;
-use TmrwLife\NtakGuru\Entities\Viza\Guest;
-use TmrwLife\NtakGuru\Entities\Viza\GuestDocument;
-use TmrwLife\NtakGuru\Enums\DocumentType;
-use TmrwLife\NtakGuru\Enums\Gender;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
 use TmrwLife\NtakGuru\Validation\Viza\Validator;
