@@ -2,7 +2,7 @@
 
 namespace TmrwLife\NtakGuru\Entities;
 
-use TmrwLife\NtakGuru\Interfaces\Arrayable;
+use Illuminate\Contracts\Support\Arrayable;
 
 class Accommodation implements Arrayable
 {
