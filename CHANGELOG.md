@@ -2,6 +2,20 @@
 
 All notable changes to `ntak-guru-php-sdk` will be documented in this file.
 
+## v2.0.0 - 2023-05-30
+
+### Added
+
+- VIZA service (https://github.com/TMRW-Life/ntak.guru-php-sdk/pull/13)
+
+### Changed
+
+- Moved NTAK features into Ntak namespace (https://github.com/TMRW-Life/ntak.guru-php-sdk/pull/13)
+
+### Removed
+
+- Custom Arrayable interface (https://github.com/TMRW-Life/ntak.guru-php-sdk/pull/13)
+
 ## v1.3.0 - 2023-05-03
 
 ### Added
