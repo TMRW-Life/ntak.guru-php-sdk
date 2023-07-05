@@ -35,9 +35,6 @@ $accommodation = (new AccommodationEntity())
 
 $gateway = \TmrwLife\NtakGuru\Services\Accommodation::setup('<your-access-token>');
 
-// Create accommodation
-$response = $gateway->store($accommodation);
-
 $accommodationId = '00000000-0000-0000-0000-0000000'; // Provided by NTAK.guru
 
 // Retrieve accommodation
