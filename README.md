@@ -35,9 +35,6 @@ $accommodation = (new AccommodationEntity())
 
 $gateway = \TmrwLife\NtakGuru\Services\Accommodation::setup('<your-access-token>');
 
-// Create accommodation
-$response = $gateway->store($accommodation);
-
 $accommodationId = '00000000-0000-0000-0000-0000000'; // Provided by NTAK.guru
 
 // Retrieve accommodation
@@ -125,7 +122,7 @@ And a few more for properties.
 |------------------------|---------------------------------------------------------|
 | Guest                  | `\TmrwLife\NtakGuru\Entities\Ntak\Guest`                |
 | Residential unit       | `\TmrwLife\NtakGuru\Entities\Ntak\ResidentialUnit`      |
-| Daily close sale       | `\TmrwLife\NtakGuru\Entities\DailyCloseSale`            |
+| Checkout Day Sale      | `\TmrwLife\NtakGuru\Entities\Ntak\CheckOutDaySale`      |
 | Expense                | `\TmrwLife\NtakGuru\Entities\Ntak\Expense`              |
 | Load                   | `\TmrwLife\NtakGuru\Entities\Ntak\Load`                 |
 | Residential unit night | `\TmrwLife\NtakGuru\Entities\Ntak\ResidentialUnitNight` |

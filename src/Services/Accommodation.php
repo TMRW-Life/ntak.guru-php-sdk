@@ -26,19 +26,24 @@ class Accommodation extends NtakGuru
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function show(string $accommodation): array
+    public function index(int $page = 1, int $perPage = 25): array
     {
-        return $this->get("/v1/accommodations/$accommodation");
+        if ($perPage > 100) {
+            $perPage = 100;
+        }
+
+        return $this->get("/v1/accommodations", [
+            'page' => $page,
+            'perPage' => $perPage,
+        ]);
     }
 
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function store(AccommodationEntity $accommodation): array
+    public function show(string $accommodation): array
     {
-        return $this->post('/v1/accommodations', [
-            RequestOptions::JSON => $accommodation->toArray(),
-        ]);
+        return $this->get("/v1/accommodations/$accommodation");
     }
 
     /**
