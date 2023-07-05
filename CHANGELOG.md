@@ -2,6 +2,16 @@
 
 All notable changes to `ntak-guru-php-sdk` will be documented in this file.
 
+## v2.1.0 - 2023-07-05
+
+### Added
+
+- Ability to retieve and modify reports (https://github.com/TMRW-Life/ntak.guru-php-sdk/pull/15)
+
+### Removed
+
+- Ability to store new accommodation (https://github.com/TMRW-Life/ntak.guru-php-sdk/pull/15)
+
 ## v2.0.0 - 2023-05-30
 
 ### Added
