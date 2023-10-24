@@ -13,7 +13,7 @@ enum PaymentOption: string
     case SZEP = 'szep';
     case TRANSFER = 'transfer';
     case VOUCHER = 'voucher';
-    case RETROSPECTIVE = 'retroactive';
+    case RETROSPECTIVE = 'retrospective';
     case OTHER = 'other';
 
     public function translate(): string
