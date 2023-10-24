@@ -8,7 +8,7 @@ NTAK.GURU is wrapper for [NTAK](https://info.ntak.hu) to provide a much simpler 
 
 ## Documentation
 
-You can find the documentation [here](https://docs.ntakguru.tmrwsystem.life).
+You can find the documentation [here](https://docs.ntak.guru).
 
 ## Installation
 
@@ -156,7 +156,7 @@ $reservation = (new Reservation())
     ->setNationality('hu')
     ->setArrival('2023-04-21')
     ->setDeparture('2023-04-23')
-    ->setSalesChannel(SalesChannel::DIRECTLY_ONLINE)
+    ->setSalesChannel(SalesChannel::DIRECT_ONLINE)
     ->setMarketSegment(MarketSegment::BUSINESS_GROUP)
     ->setGrossAmount(98700)
     ->setGuestCount(2)

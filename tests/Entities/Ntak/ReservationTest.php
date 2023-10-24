@@ -23,7 +23,7 @@ class ReservationTest extends TestCase
             ->setNationality($nationality = $this->faker->countryCode())
             ->setArrival($arrival = $this->faker->dateTime()->format('Y-m-d'))
             ->setDeparture($departure = $this->faker->dateTime()->format('Y-m-d'))
-            ->setSalesChannel($salesChannel = SalesChannel::DIRECTLY_ONLINE)
+            ->setSalesChannel($salesChannel = SalesChannel::DIRECT_ONLINE)
             ->setMarketSegment($marketSegment = MarketSegment::BUSINESS_GROUP)
             ->setGrossAmount($grossAmount = $this->faker->randomFloat(2, 0, 1000))
             ->setGuestCount($guestCount = $this->faker->randomNumber(1))

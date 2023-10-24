@@ -11,7 +11,7 @@ class DecryptTest extends TestCase
 {
     public function testItDecryptsTheContext(): void
     {
-        $encrypted = 'AMb70MRQ3Jr9AqEJzFt1qe+mrwLn03u8JW8KuxTxPExDE6vDyeL3aZFUudw8RzwYNRApZwmP3Mp2L/TiYVQC7d1c1HcC0b0iePYE/hoEOYiD7WrJyBJmKvHGzGKyrBSV8djrQFAYqJvnwUJmDidK4L0GKcEWbVfOIKd0pn430o4f5228MaHAP6zYzS9IuPzCeC42+Aho5lsfs+u8eMUo219JmCH7GQv/eYoyldZJunfFLO//cL/t6fEr7gnX5WaMFzAO2t0Ni5K7eg55wYHtIRej+6C0eoVL2i2WBXiWoxdhtRdC/Av9UUkrCsoSIb4ddP7aU22/lb8g6E9EiruzPqbFQcQc1jYSxi6P7Qe2DxeQYugqYBp8DhqYyffe9qIyujUuETYwWw5IuFjZsspYhBHMucEEWxmluX2z6qnLaLG5qdSbJnwk38KIrjd7ZNq6ad5nygjNLKfQmqYizTo20o3D36sX4P9LkpO2Ny/gvJzZfqyLr+3ejSXik30HSZupzRoS0THXsJyS8uXpMsyVnzd8pkrzX0UOMnibVtubymlU8G8t7IbBtjF9xTIc0DkOAdKfbBtz87U2u+Fw3bDvor1+pQ2A0YwHMUWMk7RRVVzliN1aAcqmOy0fdo5vHfoG4j4z1romtja6waps7xdHbJXe9orTdgyrUb/IjUX2pCQ=';
+        $encrypted = 'hVcbND1lK5HUps7sa2uhCfd0MGw2UuzqFSJ4m8f54Zfk5L3HJxa9fiNRfWKqNHmZLX3kJZytpCu8uiKWF1o0ASjdENKegxbXOR8uc8UvBeDOlJOdgNB9zOhbmCGEUI8nxyCnLTdvthfu+dxjFT3M27ov7yQV7IvLqJtZGIWB+kFvXviBykh1yNzmGdjV5RMpyWQGlTq1h0onGyAvPlKp/U3ehtnmejjMlCjUoWj5Zg323dWjIGG3hpf1GusBSh1XnLq6XPjvhMT5/R8v2dUYeQEgkGG4b2ZLaXeHfVs2nynauwTiq6bZcReIucStJAvY9sBCdi00INLzuafFTWarxiSsKXO329InYGmQZw8zYw5wMK+44XFqcE7W8ht9tz4cC+X1pf/lTn3ihblipJmJtbQpSKlPYzu/m1/+YnHFTnzM8Oa+YV5naTscOtEKH4VlR97yjwh37pgnw6uD7j4nPXl1da6OJkKvvjJYP8rjIsnvkDMNqLx/acS/u//O84AwHdSrw1Fk6WYtMl3OFBNzcz0N4uBJK5MgPC9PTQNPQIyL2ysUVo6+o/nstFQh3cdgDjKbD10BqochaeySzM+fLFzJY9a7VO7fPf1OOTUiH5w4orid6ZcDjERWmYNSmEFhRsaTwNyZasuhRzLzySH68vMK+FL2Azg3C8MbP2/RXnM=,C6mYe2UWuwfEs8B1XbepmRJomwkQ/MTfO+UpyG4TDmGX2SvHdAtPdHBfSGs0ovoF0h5lS9/7HKlklkFVJwhiMPhFuCjpJHf59nQqcDzmFlnlrhlEq97qbjVMQyCbfHu6mqoUHeETia3W+M1HnLs6NNVGRbgxNsTUiSNBUYnD/3cAyRuVNakrplxEXOr2VlaSNILuFPxmms6TZ8vHv/R0noV/20M0r+HcEX2ebhrZAsCpXBjpxzTeWJSsbbXFpURlltuxCPw+X55zR8p/hmQNqsbZdV917f/6xf0nD3sMYN4tPr07ND5RS6mj3RPTVGVs+TxRXl7cypa8R+uh/YQdarG9JLFERaGriLMKoooTnxpn0PUrnTGM+QpWn3kFeg0LYgiLAbCdZYY/TeZvHpkdSmCMa3zcxaWB8xARq+VddSsmV+QpE73d3rW/AFxnBu+Mt3Kh5oW8EgcVBu8UgD9XcBUyKkKhmst/eWj4CLkkAGVR4/7K94Vis+Is56fMyB7zAz3ZXGQKEbRaAOJSFER+xKzW//0FoLaLqZt8MWg7y1VRr9EIGxh51hKZPQiBxcaKLA+mXff1umCYhDNKeHa5Clr5hBKWuu+Il/AfJzT5wHta0/p1Qb86lV6SeF1y9mYeVDb9dLtIMg9edAHoFqkTL8wqdTZiNb3zNezWy1LkK7Y=';
 
         $context = Crypt::decrypt($encrypted);
 
@@ -23,7 +23,7 @@ class DecryptTest extends TestCase
         $this->assertSame(9, $context['guestCount']);
         $this->assertSame(MarketSegment::BUSINESS_GROUP->value, $context['marketSegment']);
         $this->assertSame('1994-11-09 23:26:49', $context['reservedAt']);
-        $this->assertSame(SalesChannel::DIRECTLY_ONLINE->value, $context['salesChannel']);
+        $this->assertSame(SalesChannel::DIRECT_ONLINE->value, $context['salesChannel']);
         $this->assertSame(43215.17, $context['grossAmount']);
         $this->assertSame('LY', $context['nationality']);
         $this->assertSame(ResidentialUnitType::JUNIOR_SUITE->value, $context['bookedResidentialUnits'][0]['type']);

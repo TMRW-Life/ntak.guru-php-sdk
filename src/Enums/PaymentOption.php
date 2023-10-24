@@ -13,7 +13,7 @@ enum PaymentOption: string
     case SZEP = 'szep';
     case TRANSFER = 'transfer';
     case VOUCHER = 'voucher';
-    case ADDITIONAL = 'additional';
+    case RETROSPECTIVE = 'retroactive';
     case OTHER = 'other';
 
     public function translate(): string
@@ -24,7 +24,7 @@ enum PaymentOption: string
             self::SZEP => 'SZEP_KARTYA',
             self::TRANSFER => 'ATUTALAS',
             self::VOUCHER => 'UTALVANY',
-            self::ADDITIONAL => 'UTOLAGOS',
+            self::RETROSPECTIVE => 'UTOLAGOS',
             self::OTHER => 'EGYEB',
         };
     }

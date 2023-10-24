@@ -3,6 +3,7 @@
 namespace TmrwLife\NtakGuru;
 
 use OpenSSLAsymmetricKey;
+use Throwable;
 
 class Crypt
 {
@@ -12,17 +13,24 @@ class Crypt
             return false;
         }
 
-        $publicKey = self::loadPublicKey();
+        try {
+            $publicKey = self::loadPublicKey();
 
-        $encrypted = base64_decode($base64String);
+            $chunks = explode(',', $base64String);
 
-        $success = openssl_public_decrypt($encrypted, $decrypted, $publicKey);
+            $decryptedChunks = array_reduce($chunks, static function ($carry, $base64chunk) use ($publicKey) {
+                $chunk = base64_decode($base64chunk);
+                openssl_public_decrypt($chunk, $decrypted, $publicKey);
 
-        if (!$success) {
+                return [...$carry, $decrypted];
+            }, []);
+
+            $originalPayload = implode('', $decryptedChunks);
+
+            return json_decode($originalPayload, true, 512, JSON_THROW_ON_ERROR);
+        } catch (Throwable) {
             return false;
         }
-
-        return json_decode($decrypted, true);
     }
 
     public static function seal(array $data): array

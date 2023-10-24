@@ -32,7 +32,7 @@ class DailyCloseTest extends TestCase
 
         $afterStayLoad = (new Load())
             ->setAmount($afterStayLoadAmount = $this->faker->randomFloat())
-            ->setCategory($afterStayLoadCategory = ChargeItemCategory::FEE)
+            ->setCategory($afterStayLoadCategory = ChargeItemCategory::ACCOMMODATION_FEE)
             ->setDate($afterStayLoadDate = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setIsTouristTax($afterStayLoadIsTouristTax = $this->faker->boolean())
             ->setTaxPercentage($afterStayLoadTaxPercentage = $this->faker->numberBetween(0, 100));
@@ -63,16 +63,16 @@ class DailyCloseTest extends TestCase
             ->setMarketSegment($checkOutDaySaleMarketSegment = MarketSegment::BUSINESS_GROUP)
             ->setReservationNumber($checkOutDaySaleReservationNumber = $this->faker->uuid())
             ->setResidentialUnit($checkOutDaySaleResidentialUnit)
-            ->setSalesChannel($checkOutDaySaleSalesChannel = SalesChannel::DIRECTLY_TRADITIONAL);
+            ->setSalesChannel($checkOutDaySaleSalesChannel = SalesChannel::DIRECT_TRADITIONAL);
 
         $otherExpense = (new Expense())
             ->setAmount($otherExpenseAmount = $this->faker->randomFloat())
             ->setDate($otherExpenseDate = $this->faker->dateTime()->format('Y-m-d H:i:s'))
-            ->setPaymentOption($otherExpensePaymentOption = PaymentOption::ADDITIONAL);
+            ->setPaymentOption($otherExpensePaymentOption = PaymentOption::RETROSPECTIVE);
 
         $otherLoad = (new Load())
             ->setAmount($otherLoadAmount = $this->faker->randomFloat())
-            ->setCategory($otherLoadCategory = ChargeItemCategory::WELLNESS)
+            ->setCategory($otherLoadCategory = ChargeItemCategory::HEALTH_AND_WELLNESS)
             ->setDate($otherLoadDate = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setTaxPercentage($otherLoadTaxPercentage = $this->faker->numberBetween(0, 100));
 
@@ -119,10 +119,10 @@ class DailyCloseTest extends TestCase
             ->addExpense($residentialUnitNightExpense)
             ->addGuest($residentialUnitNightGuest)
             ->addLoad($residentialUnitNightLoad)
-            ->setMarketSegment($residentialUnitNightMarketSegment = MarketSegment::VACATION_GROUP)
+            ->setMarketSegment($residentialUnitNightMarketSegment = MarketSegment::LEISURE_GROUP)
             ->setReservationNumber($residentialUnitNightReservationNumber = $this->faker->uuid())
             ->setResidentialUnit($residentialUnitNightResidentialUnit)
-            ->setSalesChannel($residentialUnitNightSalesChannel = SalesChannel::INTERMEDIARY_TRADITIONAL);
+            ->setSalesChannel($residentialUnitNightSalesChannel = SalesChannel::AGENCY_TRADITIONAL);
 
         $dailyClose = (new DailyClose())
             ->setClosedDay($closedDay = $this->faker->date())

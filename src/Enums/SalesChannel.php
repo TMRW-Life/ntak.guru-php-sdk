@@ -8,18 +8,18 @@ enum SalesChannel: string
 {
     use Values;
 
-    case DIRECTLY_ONLINE = 'directly_online';
-    case DIRECTLY_TRADITIONAL = 'directly_traditional';
-    case INTERMEDIARY_ONLINE = 'intermediary_online';
-    case INTERMEDIARY_TRADITIONAL = 'intermediary_traditional';
+    case DIRECT_ONLINE = 'direct_online';
+    case DIRECT_TRADITIONAL = 'direct_traditional';
+    case AGENCY_ONLINE = 'agency_online';
+    case AGENCY_TRADITIONAL = 'agency_traditional';
 
     public function translate(): string
     {
         return match ($this) {
-            self::DIRECTLY_ONLINE => 'DIREKT_ONLINE',
-            self::DIRECTLY_TRADITIONAL => 'DIREKT_HAGYOMANYOS',
-            self::INTERMEDIARY_ONLINE => 'KOZVETITO_ONLINE',
-            self::INTERMEDIARY_TRADITIONAL => 'KOZVETITO_HAGYOMANYOS',
+            self::DIRECT_ONLINE => 'DIREKT_ONLINE',
+            self::DIRECT_TRADITIONAL => 'DIREKT_HAGYOMANYOS',
+            self::AGENCY_ONLINE => 'KOZVETITO_ONLINE',
+            self::AGENCY_TRADITIONAL => 'KOZVETITO_HAGYOMANYOS',
         };
     }
 }
