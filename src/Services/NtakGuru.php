@@ -7,14 +7,22 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
+use InvalidArgumentException;
 
 abstract class NtakGuru
 {
     protected Client $client;
 
-    public function __construct(protected string $accessToken, HandlerStack $handlerStack = null)
+    /**
+     * @param  array{accessToken: string, handlerStack: HandlerStack, isProduction: bool}  $config
+     */
+    public function __construct(protected array $config)
     {
-        $this->setupClient($handlerStack);
+        if (!array_key_exists('accessToken', $this->config)) {
+            throw new InvalidArgumentException('Missing access token.');
+        }
+
+        $this->setupClient();
     }
 
     public static function fake(?array $response, int $status = 200): static
@@ -25,12 +33,19 @@ abstract class NtakGuru
 
         $handlerStack = HandlerStack::create($mock);
 
-        return new static('not important', $handlerStack);
+        return new static([
+            'accessToken' => 'not important',
+            'handlerStack' => $handlerStack,
+            'isProduction' => false,
+        ]);
     }
 
-    public static function setup(string $accessToken): static
+    /**
+     * @param  array{accessToken: string, isProduction: bool}  $config
+     */
+    public static function setup(array $config): static
     {
-        return new static($accessToken);
+        return new static($config);
     }
 
     /**
@@ -77,19 +92,28 @@ abstract class NtakGuru
         return json_decode($response->getBody(), true);
     }
 
-    protected function setupClient(?HandlerStack $handlerStack): void
+    protected function setupClient(): void
     {
+        if (
+            array_key_exists('isProduction', $this->config) &&
+            filter_var($this->config['isProduction'], FILTER_VALIDATE_BOOLEAN)
+        ) {
+            $domain = 'https://api.ntak.guru';
+        } else {
+            $domain = 'https://api.sandbox.ntak.guru';
+        }
+
         $config = [
-            'base_uri' => 'https://api.ntak.guru',
+            'base_uri' => $domain,
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
-                'Authorization' => "Bearer $this->accessToken",
+                'Authorization' => "Bearer {$this->config['accessToken']}",
             ],
         ];
 
-        if ($handlerStack) {
-            $config['handler'] = $handlerStack;
+        if (array_key_exists('handlerStack', $this->config)) {
+            $config['handler'] = $this->config['handlerStack'];
         }
 
         $this->client = new Client($config);
