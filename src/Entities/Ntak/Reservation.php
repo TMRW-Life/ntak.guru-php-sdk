@@ -2,12 +2,12 @@
 
 namespace TmrwLife\NtakGuru\Entities\Ntak;
 
-use Illuminate\Contracts\Support\Arrayable;
 use TmrwLife\NtakGuru\Enums\MarketSegment;
 use TmrwLife\NtakGuru\Enums\ResidentialUnitType as ResidentialUnitEnum;
 use TmrwLife\NtakGuru\Enums\SalesChannel;
+use TmrwLife\NtakGuru\Context;
 
-class Reservation implements Arrayable
+class Reservation extends Context
 {
     protected ?string $arrival = null;
 

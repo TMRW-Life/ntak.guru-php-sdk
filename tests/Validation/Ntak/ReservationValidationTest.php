@@ -8,7 +8,6 @@ use TmrwLife\NtakGuru\Enums\ResidentialUnitType;
 use TmrwLife\NtakGuru\Enums\SalesChannel;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
-use TmrwLife\NtakGuru\Validation\Ntak\Validator;
 
 class ReservationValidationTest extends TestCase
 {
@@ -33,30 +32,26 @@ class ReservationValidationTest extends TestCase
                 $this->faker->numberBetween(1, 10)
             );
 
-        $validator = Validator::parse($reservation);
-
-        $this->assertTrue($validator->validate());
+        $this->assertTrue($reservation->validate());
     }
 
     public function testItReservationValidationFail(): void
     {
         $reservation = (new Reservation());
 
-        $validator = Validator::parse($reservation);
+        $this->assertFalse($reservation->validate());
 
-        $this->assertFalse($validator->validate());
-
-        $this->assertArrayHasKey('arrival', $validator->getErrors());
-        $this->assertArrayHasKey('departure', $validator->getErrors());
-        $this->assertArrayHasKey('cancelled', $validator->getErrors());
-        $this->assertArrayHasKey('guestCount', $validator->getErrors());
-        $this->assertArrayHasKey('reservationNumber', $validator->getErrors());
-        $this->assertArrayHasKey('marketSegment', $validator->getErrors());
-        $this->assertArrayHasKey('reservedAt', $validator->getErrors());
-        $this->assertArrayHasKey('occurredAt', $validator->getErrors());
-        $this->assertArrayHasKey('salesChannel', $validator->getErrors());
-        $this->assertArrayHasKey('grossAmount', $validator->getErrors());
-        $this->assertArrayHasKey('nationality', $validator->getErrors());
-        $this->assertArrayHasKey('bookedResidentialUnits', $validator->getErrors());
+        $this->assertArrayHasKey('arrival', $reservation->getValidationErrors());
+        $this->assertArrayHasKey('departure', $reservation->getValidationErrors());
+        $this->assertArrayHasKey('cancelled', $reservation->getValidationErrors());
+        $this->assertArrayHasKey('guestCount', $reservation->getValidationErrors());
+        $this->assertArrayHasKey('reservationNumber', $reservation->getValidationErrors());
+        $this->assertArrayHasKey('marketSegment', $reservation->getValidationErrors());
+        $this->assertArrayHasKey('reservedAt', $reservation->getValidationErrors());
+        $this->assertArrayHasKey('occurredAt', $reservation->getValidationErrors());
+        $this->assertArrayHasKey('salesChannel', $reservation->getValidationErrors());
+        $this->assertArrayHasKey('grossAmount', $reservation->getValidationErrors());
+        $this->assertArrayHasKey('nationality', $reservation->getValidationErrors());
+        $this->assertArrayHasKey('bookedResidentialUnits', $reservation->getValidationErrors());
     }
 }

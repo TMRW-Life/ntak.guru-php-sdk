@@ -2,9 +2,9 @@
 
 namespace TmrwLife\NtakGuru\Entities\Viza;
 
-use Illuminate\Contracts\Support\Arrayable;
+use TmrwLife\NtakGuru\Context;
 
-class CheckOut implements Arrayable
+class CheckOut extends Context
 {
     protected ?array $guests = null;
     protected ?string $occurredAt = null;

@@ -2,9 +2,9 @@
 
 namespace TmrwLife\NtakGuru\Entities\Ntak;
 
-use Illuminate\Contracts\Support\Arrayable;
+use TmrwLife\NtakGuru\Context;
 
-class DailyClose implements Arrayable
+class DailyClose extends Context
 {
     protected bool $accommodationNotOperating = false;
     protected ?array $afterStayExpenses = null;

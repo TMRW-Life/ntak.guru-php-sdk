@@ -2,9 +2,9 @@
 
 namespace TmrwLife\NtakGuru\Entities\Ntak;
 
-use Illuminate\Contracts\Support\Arrayable;
+use TmrwLife\NtakGuru\Context;
 
-class CheckIn implements Arrayable
+class CheckIn extends Context
 {
     protected ?array $guests = null;
 

@@ -2,9 +2,9 @@
 
 namespace TmrwLife\NtakGuru\Entities\Ntak;
 
-use Illuminate\Contracts\Support\Arrayable;
+use TmrwLife\NtakGuru\Context;
 
-class RoomChange implements Arrayable
+class RoomChange extends Context
 {
     protected ?ResidentialUnit $abandonedResidentialUnit = null;
 
