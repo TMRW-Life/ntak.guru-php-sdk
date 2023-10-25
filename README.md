@@ -33,7 +33,10 @@ $accommodation = (new AccommodationEntity())
     ->setPostcode('M1 1AA')
     ->setLocality('Budapest');
 
-$gateway = \TmrwLife\NtakGuru\Services\Accommodation::setup('<your-access-token>');
+$gateway = \TmrwLife\NtakGuru\Services\Accommodation::setup([
+    'accessToken' => '<your-access-token>',
+    'isProduction' => false, // default: false
+]);
 
 $accommodationId = '00000000-0000-0000-0000-0000000'; // Provided by NTAK.guru
 
@@ -57,7 +60,10 @@ use TmrwLife\NtakGuru\Services\Certificate;
 
 $accommodationId = '00000000-0000-0000-0000-0000000'; // Provided by NTAK.guru
 
-$gateway = Certificate::setup('<your-access-token>');
+$gateway = Certificate::setup([
+    'accessToken' => '<your-access-token>',
+    'isProduction' => false, // default: false
+]);
 
 // Generate certificate (private key)
 $gateway->generate($accommodationId);
@@ -83,7 +89,10 @@ use TmrwLife\NtakGuru\Services\Reporting\Ntak;
 
 $accommodationId = '00000000-0000-0000-0000-0000000'; // Provided by NTAK.guru
 
-$reporting = Ntak::setup('<your-access-token>');
+$reporting = Ntak::setup([
+    'accessToken' => '<your-access-token>',
+    'isProduction' => false, // default: false
+]);
 
 // Check-in report
 $checkIn = (new CheckIn())->setAttribute('...');
@@ -253,7 +262,10 @@ use TmrwLife\NtakGuru\Services\Reporting\Viza;
 
 $accommodationId = '00000000-0000-0000-0000-0000000'; // Provided by NTAK.guru
 
-$reporting = Viza::setup('<your-access-token>');
+$reporting = Viza::setup([
+    'accessToken' => '<your-access-token>',
+    'isProduction' => false, // default: false
+]);
 
 // Check-in report
 $checkIn = (new CheckIn())->setAttribute('...');
