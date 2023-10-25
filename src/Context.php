@@ -25,7 +25,6 @@ use TmrwLife\NtakGuru\Validation\Rules\PaymentOptionSubtypeRule;
 
 abstract class Context implements Arrayable
 {
-
     protected array|null $errors = null;
     protected Factory $validator;
 
