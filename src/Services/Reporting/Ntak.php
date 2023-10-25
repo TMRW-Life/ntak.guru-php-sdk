@@ -18,7 +18,7 @@ class Ntak extends NtakGuru
     {
         $data = Crypt::seal($entity->toArray());
 
-        return $this->post("/v1/accommodations/$accommodation/reports/ntak/check-in", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/ntak/check_in", $data);
     }
 
     /**
@@ -28,7 +28,7 @@ class Ntak extends NtakGuru
     {
         $data = Crypt::seal($entity->toArray());
 
-        return $this->post("/v1/accommodations/$accommodation/reports/ntak/check-out", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/ntak/check_out", $data);
     }
 
     /**
@@ -73,7 +73,7 @@ class Ntak extends NtakGuru
     {
         $data = Crypt::seal($entity->toArray());
 
-        return $this->post("/v1/accommodations/$accommodation/reports/ntak/room-change", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/ntak/room_change", $data);
     }
 
     /**
