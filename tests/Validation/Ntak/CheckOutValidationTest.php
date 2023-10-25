@@ -10,7 +10,6 @@ use TmrwLife\NtakGuru\Enums\ResidentialUnitType;
 use TmrwLife\NtakGuru\Enums\TouristTax;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
-use TmrwLife\NtakGuru\Validation\Ntak\Validator;
 
 class CheckOutValidationTest extends TestCase
 {
@@ -41,28 +40,24 @@ class CheckOutValidationTest extends TestCase
             ->addGuest($guest)
             ->setAbandonedResidentialUnit($unit);
 
-        $validator = Validator::parse($checkOut);
-
-        $this->assertTrue($validator->validate());
+        $this->assertTrue($checkOut->validate());
     }
 
     public function testItCheckOutValidationFail(): void
     {
         $checkOut = (new CheckOut());
 
-        $validator = Validator::parse($checkOut);
+        $this->assertFalse($checkOut->validate());
 
-        $this->assertFalse($validator->validate());
-
-        $this->assertArrayHasKey('occurredAt', $validator->getErrors());
-        $this->assertArrayHasKey('reservationNumber', $validator->getErrors());
-        $this->assertArrayHasKey('guests', $validator->getErrors());
-        $this->assertArrayHasKey('abandonedResidentialUnit', $validator->getErrors());
-        $this->assertArrayHasKey('abandonedResidentialUnit.type', $validator->getErrors());
-        $this->assertArrayHasKey('abandonedResidentialUnit.building', $validator->getErrors());
-        $this->assertArrayHasKey('abandonedResidentialUnit.number', $validator->getErrors());
-        $this->assertArrayHasKey('abandonedResidentialUnit.singleBedCount', $validator->getErrors());
-        $this->assertArrayHasKey('abandonedResidentialUnit.doubleBedCount', $validator->getErrors());
-        $this->assertArrayHasKey('abandonedResidentialUnit.trundleBedCount', $validator->getErrors());
+        $this->assertArrayHasKey('occurredAt', $checkOut->getValidationErrors());
+        $this->assertArrayHasKey('reservationNumber', $checkOut->getValidationErrors());
+        $this->assertArrayHasKey('guests', $checkOut->getValidationErrors());
+        $this->assertArrayHasKey('abandonedResidentialUnit', $checkOut->getValidationErrors());
+        $this->assertArrayHasKey('abandonedResidentialUnit.type', $checkOut->getValidationErrors());
+        $this->assertArrayHasKey('abandonedResidentialUnit.building', $checkOut->getValidationErrors());
+        $this->assertArrayHasKey('abandonedResidentialUnit.number', $checkOut->getValidationErrors());
+        $this->assertArrayHasKey('abandonedResidentialUnit.singleBedCount', $checkOut->getValidationErrors());
+        $this->assertArrayHasKey('abandonedResidentialUnit.doubleBedCount', $checkOut->getValidationErrors());
+        $this->assertArrayHasKey('abandonedResidentialUnit.trundleBedCount', $checkOut->getValidationErrors());
     }
 }

@@ -10,7 +10,6 @@ use TmrwLife\NtakGuru\Enums\ResidentialUnitType;
 use TmrwLife\NtakGuru\Enums\TouristTax;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
-use TmrwLife\NtakGuru\Validation\Ntak\Validator;
 
 class CheckInValidationTest extends TestCase
 {
@@ -41,28 +40,24 @@ class CheckInValidationTest extends TestCase
             ->addGuest($guest)
             ->setOccupiedResidentialUnit($unit);
 
-        $validator = Validator::parse($checkIn);
-
-        $this->assertTrue($validator->validate());
+        $this->assertTrue($checkIn->validate());
     }
 
     public function testItCheckInValidationFail(): void
     {
         $checkIn = (new CheckIn());
 
-        $validator = Validator::parse($checkIn);
+        $this->assertFalse($checkIn->validate());
 
-        $this->assertFalse($validator->validate());
-
-        $this->assertArrayHasKey('occurredAt', $validator->getErrors());
-        $this->assertArrayHasKey('reservationNumber', $validator->getErrors());
-        $this->assertArrayHasKey('guests', $validator->getErrors());
-        $this->assertArrayHasKey('occupiedResidentialUnit', $validator->getErrors());
-        $this->assertArrayHasKey('occupiedResidentialUnit.type', $validator->getErrors());
-        $this->assertArrayHasKey('occupiedResidentialUnit.building', $validator->getErrors());
-        $this->assertArrayHasKey('occupiedResidentialUnit.number', $validator->getErrors());
-        $this->assertArrayHasKey('occupiedResidentialUnit.singleBedCount', $validator->getErrors());
-        $this->assertArrayHasKey('occupiedResidentialUnit.doubleBedCount', $validator->getErrors());
-        $this->assertArrayHasKey('occupiedResidentialUnit.trundleBedCount', $validator->getErrors());
+        $this->assertArrayHasKey('occurredAt', $checkIn->getValidationErrors());
+        $this->assertArrayHasKey('reservationNumber', $checkIn->getValidationErrors());
+        $this->assertArrayHasKey('guests', $checkIn->getValidationErrors());
+        $this->assertArrayHasKey('occupiedResidentialUnit', $checkIn->getValidationErrors());
+        $this->assertArrayHasKey('occupiedResidentialUnit.type', $checkIn->getValidationErrors());
+        $this->assertArrayHasKey('occupiedResidentialUnit.building', $checkIn->getValidationErrors());
+        $this->assertArrayHasKey('occupiedResidentialUnit.number', $checkIn->getValidationErrors());
+        $this->assertArrayHasKey('occupiedResidentialUnit.singleBedCount', $checkIn->getValidationErrors());
+        $this->assertArrayHasKey('occupiedResidentialUnit.doubleBedCount', $checkIn->getValidationErrors());
+        $this->assertArrayHasKey('occupiedResidentialUnit.trundleBedCount', $checkIn->getValidationErrors());
     }
 }

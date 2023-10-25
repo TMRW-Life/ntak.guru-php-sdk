@@ -18,7 +18,6 @@ use TmrwLife\NtakGuru\Enums\SalesChannel;
 use TmrwLife\NtakGuru\Enums\TouristTax;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
-use TmrwLife\NtakGuru\Validation\Ntak\Validator;
 
 class DailyCloseValidationTest extends TestCase
 {
@@ -145,17 +144,13 @@ class DailyCloseValidationTest extends TestCase
             ->addOutOfServiceResidentialUnit($outOfServiceResidentialUnit)
             ->addResidentialUnitNight($residentialUnitNight);
 
-        $validator = Validator::parse($dailyClose);
-
-        $this->assertTrue($validator->validate());
+        $this->assertTrue($dailyClose->validate());
     }
 
     public function testItDailyCloseValidationFail(): void
     {
         $dailyClose = (new DailyClose());
 
-        $validator = Validator::parse($dailyClose);
-
-        $this->assertFalse($validator->validate());
+        $this->assertFalse($dailyClose->validate());
     }
 }

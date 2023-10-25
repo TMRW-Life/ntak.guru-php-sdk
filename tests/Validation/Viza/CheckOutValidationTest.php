@@ -5,7 +5,6 @@ namespace TmrwLife\NtakGuru\Tests\Validation\Viza;
 use TmrwLife\NtakGuru\Entities\Viza\CheckOut;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
-use TmrwLife\NtakGuru\Validation\Viza\Validator;
 
 class CheckOutValidationTest extends TestCase
 {
@@ -15,12 +14,10 @@ class CheckOutValidationTest extends TestCase
     {
         $checkOut = (new CheckOut());
 
-        $validator = Validator::parse($checkOut);
+        $this->assertFalse($checkOut->validate());
 
-        $this->assertFalse($validator->validate());
-
-        $this->assertArrayHasKey('occurredAt', $validator->getErrors());
-        $this->assertArrayHasKey('guests', $validator->getErrors());
+        $this->assertArrayHasKey('occurredAt', $checkOut->getValidationErrors());
+        $this->assertArrayHasKey('guests', $checkOut->getValidationErrors());
     }
 
     public function testItCheckOutValidationSuccess(): void
@@ -32,8 +29,6 @@ class CheckOutValidationTest extends TestCase
                 departure: $this->faker->dateTime()->format('Y-m-d H:i:s'),
             );
 
-        $validator = Validator::parse($checkOut);
-
-        $this->assertTrue($validator->validate());
+        $this->assertTrue($checkOut->validate());
     }
 }

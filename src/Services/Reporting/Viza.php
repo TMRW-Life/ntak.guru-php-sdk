@@ -16,7 +16,7 @@ class Viza extends NtakGuru
     {
         $data = Crypt::seal($entity->toArray());
 
-        return $this->post("/v1/accommodations/$accommodation/reports/viza/check-in", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/viza/check_in", $data);
     }
 
     /**
@@ -26,7 +26,7 @@ class Viza extends NtakGuru
     {
         $data = Crypt::seal($entity->toArray());
 
-        return $this->post("/v1/accommodations/$accommodation/reports/viza/check-out", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/viza/check_out", $data);
     }
 
     /**

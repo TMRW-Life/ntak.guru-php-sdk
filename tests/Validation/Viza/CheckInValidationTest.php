@@ -9,7 +9,6 @@ use TmrwLife\NtakGuru\Enums\DocumentType;
 use TmrwLife\NtakGuru\Enums\Gender;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
-use TmrwLife\NtakGuru\Validation\Viza\Validator;
 
 class CheckInValidationTest extends TestCase
 {
@@ -19,12 +18,10 @@ class CheckInValidationTest extends TestCase
     {
         $checkIn = (new CheckIn());
 
-        $validator = Validator::parse($checkIn);
+        $this->assertFalse($checkIn->validate());
 
-        $this->assertFalse($validator->validate());
-
-        $this->assertArrayHasKey('occurredAt', $validator->getErrors());
-        $this->assertArrayHasKey('guests', $validator->getErrors());
+        $this->assertArrayHasKey('occurredAt', $checkIn->getValidationErrors());
+        $this->assertArrayHasKey('guests', $checkIn->getValidationErrors());
     }
 
     public function testItCheckInValidationSuccess(): void
@@ -71,8 +68,6 @@ class CheckInValidationTest extends TestCase
             ->setOccurredAt($this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->addGuest($guest);
 
-        $validator = Validator::parse($checkIn);
-
-        $this->assertTrue($validator->validate());
+        $this->assertTrue($checkIn->validate());
     }
 }
