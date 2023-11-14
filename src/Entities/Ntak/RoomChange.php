@@ -2,9 +2,9 @@
 
 namespace TmrwLife\NtakGuru\Entities\Ntak;
 
-use TmrwLife\NtakGuru\Context;
+use TmrwLife\NtakGuru\Interfaces\Context;
 
-class RoomChange extends Context
+class RoomChange implements Context
 {
     protected ?ResidentialUnit $abandonedResidentialUnit = null;
 

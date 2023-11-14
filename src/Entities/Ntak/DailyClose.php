@@ -2,9 +2,9 @@
 
 namespace TmrwLife\NtakGuru\Entities\Ntak;
 
-use TmrwLife\NtakGuru\Context;
+use TmrwLife\NtakGuru\Interfaces\Context;
 
-class DailyClose extends Context
+class DailyClose implements Context
 {
     protected bool $accommodationNotOperating = false;
     protected ?array $afterStayExpenses = null;

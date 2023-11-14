@@ -2,8 +2,8 @@
 
 namespace TmrwLife\NtakGuru\Entities\Ntak;
 
-use Illuminate\Contracts\Support\Arrayable;
 use TmrwLife\NtakGuru\Enums\ChargeItemCategory;
+use TmrwLife\NtakGuru\Interfaces\Arrayable;
 
 class Load implements Arrayable
 {

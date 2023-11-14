@@ -2,8 +2,8 @@
 
 namespace TmrwLife\NtakGuru\Entities\Ntak;
 
-use Illuminate\Contracts\Support\Arrayable;
 use TmrwLife\NtakGuru\Enums\PaymentOption;
+use TmrwLife\NtakGuru\Interfaces\Arrayable;
 
 class Expense implements Arrayable
 {

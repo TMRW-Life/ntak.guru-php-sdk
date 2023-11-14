@@ -2,8 +2,8 @@
 
 namespace TmrwLife\NtakGuru\Entities\Ntak;
 
-use Illuminate\Contracts\Support\Arrayable;
 use TmrwLife\NtakGuru\Enums\ResidentialUnitType;
+use TmrwLife\NtakGuru\Interfaces\Arrayable;
 
 class ResidentialUnit implements Arrayable
 {

@@ -2,9 +2,9 @@
 
 namespace TmrwLife\NtakGuru\Entities\Ntak;
 
-use Illuminate\Contracts\Support\Arrayable;
 use TmrwLife\NtakGuru\Enums\MarketSegment;
 use TmrwLife\NtakGuru\Enums\SalesChannel;
+use TmrwLife\NtakGuru\Interfaces\Arrayable;
 
 class ResidentialUnitNight implements Arrayable
 {

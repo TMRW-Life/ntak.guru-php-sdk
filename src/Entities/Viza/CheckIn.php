@@ -2,9 +2,9 @@
 
 namespace TmrwLife\NtakGuru\Entities\Viza;
 
-use TmrwLife\NtakGuru\Context;
+use TmrwLife\NtakGuru\Interfaces\Context;
 
-class CheckIn extends Context
+class CheckIn implements Context
 {
     protected ?array $guests = null;
     protected ?string $occurredAt = null;
