@@ -229,28 +229,6 @@ $data = Crypt::seal($dailyClose->toArray());
 return $data; // JSON response to NTAK.guru
 ```
 
-### Validation
-
-You can validate the request data with the `Validator` class.
-
-Since we can not provide staging/sandbox environment, this will help you to test your code in development.
-
-```php
-use TmrwLife\NtakGuru\Entities\Ntak\Reservation;
-use TmrwLife\NtakGuru\Validation\Ntak\Validator;
-
-$reservation = new Reservation();
-
-$validator = Validator::parse($reservation);
-
-if (!$validator->validate()) {
-    $validator->getErrors();
-    // handle validation errors
-}
-
-# ... validation passed
-```
-
 ## VIZA
 
 ### Sending report

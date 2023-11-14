@@ -2,9 +2,9 @@
 
 namespace TmrwLife\NtakGuru\Entities\Ntak;
 
-use Illuminate\Contracts\Support\Arrayable;
 use TmrwLife\NtakGuru\Enums\Gender;
 use TmrwLife\NtakGuru\Enums\TouristTax;
+use TmrwLife\NtakGuru\Interfaces\Arrayable;
 
 class Guest implements Arrayable
 {

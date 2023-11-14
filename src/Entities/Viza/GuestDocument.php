@@ -2,9 +2,9 @@
 
 namespace TmrwLife\NtakGuru\Entities\Viza;
 
-use Illuminate\Contracts\Support\Arrayable;
 use TmrwLife\NtakGuru\Enums\DocumentType;
 use TmrwLife\NtakGuru\Enums\Gender;
+use TmrwLife\NtakGuru\Interfaces\Arrayable;
 
 class GuestDocument implements Arrayable
 {
@@ -105,7 +105,7 @@ class GuestDocument implements Arrayable
         return $this;
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'birthFirstName' => $this->birthFirstName,

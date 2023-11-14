@@ -2,7 +2,7 @@
 
 namespace TmrwLife\NtakGuru\Entities\Viza;
 
-use Illuminate\Contracts\Support\Arrayable;
+use TmrwLife\NtakGuru\Interfaces\Arrayable;
 
 class Guest implements Arrayable
 {

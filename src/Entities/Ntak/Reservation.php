@@ -5,9 +5,9 @@ namespace TmrwLife\NtakGuru\Entities\Ntak;
 use TmrwLife\NtakGuru\Enums\MarketSegment;
 use TmrwLife\NtakGuru\Enums\ResidentialUnitType as ResidentialUnitEnum;
 use TmrwLife\NtakGuru\Enums\SalesChannel;
-use TmrwLife\NtakGuru\Context;
+use TmrwLife\NtakGuru\Interfaces\Context;
 
-class Reservation extends Context
+class Reservation implements Context
 {
     protected ?string $arrival = null;
 
