@@ -199,7 +199,7 @@ $dailyClose = (new DailyClose())
     ->addCheckOutDaySale(new CheckOutDaySale())
     ->addOtherExpense(new Expense())
     ->addOtherLoad(new Load())
-    ->addOutOfServiceResidentialUnit(new ResidentialUnit())
+    ->addOutOfOrderResidentialUnit(new ResidentialUnit())
     ->addResidentialUnitNight(new ResidentialUnitNight());
 
 $data = Crypt::seal($dailyClose->toArray());

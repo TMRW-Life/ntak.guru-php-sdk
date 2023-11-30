@@ -13,7 +13,7 @@ class DailyClose implements Context
     protected ?string $closedDay = null;
     protected ?array $otherExpenses = null;
     protected ?array $otherLoads = null;
-    protected ?array $outOfServiceResidentialUnits = null;
+    protected ?array $outOfOrderResidentialUnits = null;
     protected ?array $residentialUnitNights = null;
     protected array $residentialUnits = [
         'all' => null,
@@ -65,9 +65,9 @@ class DailyClose implements Context
         return $this;
     }
 
-    public function addOutOfServiceResidentialUnit(ResidentialUnit $residentialUnit): DailyClose
+    public function addOutOfOrderResidentialUnit(ResidentialUnit $residentialUnit): DailyClose
     {
-        $this->outOfServiceResidentialUnits[] = $residentialUnit;
+        $this->outOfOrderResidentialUnits[] = $residentialUnit;
 
         return $this;
     }
@@ -131,9 +131,9 @@ class DailyClose implements Context
                 static fn (Load $load) => $load->toArray(),
                 $this->otherLoads
             ) : null,
-            'outOfServiceResidentialUnits' => $this->outOfServiceResidentialUnits ? array_map(
+            'outOfOrderResidentialUnits' => $this->outOfOrderResidentialUnits ? array_map(
                 static fn (ResidentialUnit $residentialUnit) => $residentialUnit->toArray(),
-                $this->outOfServiceResidentialUnits
+                $this->outOfOrderResidentialUnits
             ) : null,
             'residentialUnitNights' => $this->residentialUnitNights ? array_map(
                 static fn (ResidentialUnitNight $residentialUnitNight) => $residentialUnitNight->toArray(),
