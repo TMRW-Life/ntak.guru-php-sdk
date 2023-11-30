@@ -77,7 +77,7 @@ class DailyCloseTest extends TestCase
             ->setTaxPercentage($otherLoadTaxPercentage = $this->faker->numberBetween(0, 100));
 
         $outOfServiceResidentialUnit = (new ResidentialUnit())
-            ->setType($outOfServiceResidentialUnitType = ResidentialUnitType::DORMITORY_BED)
+            ->setType($outOfOrderResidentialUnitType = ResidentialUnitType::DORMITORY_BED)
             ->setBuilding($outOfServiceResidentialUnitBuilding = $this->faker->randomLetter())
             ->setNumber($outOfServiceResidentialUnitNumber = $this->faker->randomDigit())
             ->setSingleBedCount($outOfServiceResidentialUnitSingleBedCount = $this->faker->randomDigit())
@@ -138,7 +138,7 @@ class DailyCloseTest extends TestCase
             ->addCheckOutDaySale($checkOutDaySale)
             ->addOtherExpense($otherExpense)
             ->addOtherLoad($otherLoad)
-            ->addOutOfServiceResidentialUnit($outOfServiceResidentialUnit)
+            ->addOutOfOrderResidentialUnit($outOfServiceResidentialUnit)
             ->addResidentialUnitNight($residentialUnitNight)
             ->toArray();
 
@@ -190,12 +190,12 @@ class DailyCloseTest extends TestCase
         $this->assertSame($otherLoadDate, $dailyClose['otherLoads'][0]['date']);
         $this->assertSame($otherLoadTaxPercentage, $dailyClose['otherLoads'][0]['taxPercentage']);
 
-        $this->assertSame($outOfServiceResidentialUnitType->value, $dailyClose['outOfServiceResidentialUnits'][0]['type']);
-        $this->assertSame($outOfServiceResidentialUnitBuilding, $dailyClose['outOfServiceResidentialUnits'][0]['building']);
-        $this->assertSame($outOfServiceResidentialUnitNumber, $dailyClose['outOfServiceResidentialUnits'][0]['number']);
-        $this->assertSame($outOfServiceResidentialUnitSingleBedCount, $dailyClose['outOfServiceResidentialUnits'][0]['singleBedCount']);
-        $this->assertSame($outOfServiceResidentialUnitDoubleBedCount, $dailyClose['outOfServiceResidentialUnits'][0]['doubleBedCount']);
-        $this->assertSame($outOfServiceResidentialUnitTrundleBedCount, $dailyClose['outOfServiceResidentialUnits'][0]['trundleBedCount']);
+        $this->assertSame($outOfOrderResidentialUnitType->value, $dailyClose['outOfOrderResidentialUnits'][0]['type']);
+        $this->assertSame($outOfServiceResidentialUnitBuilding, $dailyClose['outOfOrderResidentialUnits'][0]['building']);
+        $this->assertSame($outOfServiceResidentialUnitNumber, $dailyClose['outOfOrderResidentialUnits'][0]['number']);
+        $this->assertSame($outOfServiceResidentialUnitSingleBedCount, $dailyClose['outOfOrderResidentialUnits'][0]['singleBedCount']);
+        $this->assertSame($outOfServiceResidentialUnitDoubleBedCount, $dailyClose['outOfOrderResidentialUnits'][0]['doubleBedCount']);
+        $this->assertSame($outOfServiceResidentialUnitTrundleBedCount, $dailyClose['outOfOrderResidentialUnits'][0]['trundleBedCount']);
 
         $this->assertSame($residentialUnitNightExpenseDate, $dailyClose['residentialUnitNights'][0]['expenses'][0]['date']);
         $this->assertSame($residentialUnitNightExpenseAmount, $dailyClose['residentialUnitNights'][0]['expenses'][0]['amount']);
@@ -276,6 +276,6 @@ class DailyCloseTest extends TestCase
         $this->assertEmpty($dailyClose['checkOutDaySales']);
         $this->assertEmpty($dailyClose['otherExpenses']);
         $this->assertEmpty($dailyClose['otherLoads']);
-        $this->assertEmpty($dailyClose['outOfServiceResidentialUnits']);
+        $this->assertEmpty($dailyClose['outOfOrderResidentialUnits']);
     }
 }
