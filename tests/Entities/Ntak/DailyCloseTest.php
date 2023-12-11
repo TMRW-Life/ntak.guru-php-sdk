@@ -13,6 +13,7 @@ use TmrwLife\NtakGuru\Enums\ChargeItemCategory;
 use TmrwLife\NtakGuru\Enums\Gender;
 use TmrwLife\NtakGuru\Enums\MarketSegment;
 use TmrwLife\NtakGuru\Enums\PaymentOption;
+use TmrwLife\NtakGuru\Enums\PaymentOptionSubtype;
 use TmrwLife\NtakGuru\Enums\ResidentialUnitType;
 use TmrwLife\NtakGuru\Enums\SalesChannel;
 use TmrwLife\NtakGuru\Enums\TouristTax;
@@ -88,7 +89,11 @@ class DailyCloseTest extends TestCase
             ->setDate($residentialUnitNightExpenseDate = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setAmount($residentialUnitNightExpenseAmount = $this->faker->randomFloat())
             ->setPaymentOption($residentialUnitNightExpensePaymentOption = PaymentOption::SZEP)
-            ->setPaymentOptionSubtype($residentialUnitNightExpensePaymentOptionSubtype = $this->faker->word());
+            ->setPaymentOptionSubtype(
+                $residentialUnitNightExpensePaymentOptionSubtype = PaymentOptionSubtype::from(
+                    $this->faker->randomElement(PaymentOptionSubtype::values())
+                )
+            );
 
         $residentialUnitNightGuest = (new Guest())
             ->setGender($residentialUnitNightGuestGender = Gender::MALE)
@@ -200,7 +205,7 @@ class DailyCloseTest extends TestCase
         $this->assertSame($residentialUnitNightExpenseDate, $dailyClose['residentialUnitNights'][0]['expenses'][0]['date']);
         $this->assertSame($residentialUnitNightExpenseAmount, $dailyClose['residentialUnitNights'][0]['expenses'][0]['amount']);
         $this->assertSame($residentialUnitNightExpensePaymentOption->value, $dailyClose['residentialUnitNights'][0]['expenses'][0]['paymentOption']);
-        $this->assertSame($residentialUnitNightExpensePaymentOptionSubtype, $dailyClose['residentialUnitNights'][0]['expenses'][0]['paymentOptionSubtype']);
+        $this->assertSame($residentialUnitNightExpensePaymentOptionSubtype->value, $dailyClose['residentialUnitNights'][0]['expenses'][0]['paymentOptionSubtype']);
 
         $this->assertSame($residentialUnitNightGuestGender->value, $dailyClose['residentialUnitNights'][0]['guests'][0]['gender']);
         $this->assertSame($residentialUnitNightGuestGuestNumber, $dailyClose['residentialUnitNights'][0]['guests'][0]['guestNumber']);

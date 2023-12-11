@@ -138,16 +138,17 @@ And a few more for properties.
 
 We also have some enums to help you with the attributes.
 
-| Name                 | Enum                                          |
-|----------------------|-----------------------------------------------|
-| Charge item category | `\TmrwLife\NtakGuru\Enums\ChargeItemCategory` |
-| DocumentType         | `\TmrwLife\NtakGuru\Enums\DocumentType`       |
-| Gender               | `\TmrwLife\NtakGuru\Enums\Gender`             |
-| Market segment       | `\TmrwLife\NtakGuru\Enums\MarketSegment`      |
-| Payment option       | `\TmrwLife\NtakGuru\Enums\PaymentOption`      |
-| Residential unit     | `\TmrwLife\NtakGuru\Enums\ResidentialUnit`    |
-| Sales channel        | `\TmrwLife\NtakGuru\Enums\SalesChannel`       |
-| Tourist tax          | `\TmrwLife\NtakGuru\Enums\TouristTax`         |
+| Name                   | Enum                                            |
+|------------------------|-------------------------------------------------|
+| Charge item category   | `\TmrwLife\NtakGuru\Enums\ChargeItemCategory`   |
+| DocumentType           | `\TmrwLife\NtakGuru\Enums\DocumentType`         |
+| Gender                 | `\TmrwLife\NtakGuru\Enums\Gender`               |
+| Market segment         | `\TmrwLife\NtakGuru\Enums\MarketSegment`        |
+| Payment option         | `\TmrwLife\NtakGuru\Enums\PaymentOption`        |
+| Payment option subtype | `\TmrwLife\NtakGuru\Enums\PaymentOptionSubtype` |
+| Residential unit       | `\TmrwLife\NtakGuru\Enums\ResidentialUnit`      |
+| Sales channel          | `\TmrwLife\NtakGuru\Enums\SalesChannel`         |
+| Tourist tax            | `\TmrwLife\NtakGuru\Enums\TouristTax`           |
 
 For example:
 
