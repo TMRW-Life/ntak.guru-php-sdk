@@ -89,7 +89,7 @@ class VizaTest extends TestCase
         $checkOut = (new CheckOut())
             ->setOccurredAt($this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->addGuest(
-                id: $this->faker->uuid(),
+                guestNumber: $this->faker->uuid(),
                 departure: $this->faker->dateTime()->format('Y-m-d H:i:s'),
             );
 

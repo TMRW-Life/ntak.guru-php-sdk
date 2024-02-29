@@ -9,10 +9,10 @@ class CheckOut implements Context
     protected ?array $guests = null;
     protected ?string $occurredAt = null;
 
-    public function addGuest(string $id, string $departure): CheckOut
+    public function addGuest(string|int $guestNumber, string $departure): CheckOut
     {
         $this->guests[] = [
-            'id' => $id,
+            'guestNumber' => $guestNumber,
             'departure' => $departure,
         ];
 
