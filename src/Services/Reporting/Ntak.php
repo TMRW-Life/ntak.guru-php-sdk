@@ -2,7 +2,6 @@
 
 namespace TmrwLife\NtakGuru\Services\Reporting;
 
-use TmrwLife\NtakGuru\Crypt;
 use TmrwLife\NtakGuru\Entities\Ntak\CheckIn;
 use TmrwLife\NtakGuru\Entities\Ntak\CheckOut;
 use TmrwLife\NtakGuru\Entities\Ntak\Reservation;
@@ -16,9 +15,7 @@ class Ntak extends NtakGuru
      */
     public function checkIn(string $accommodation, CheckIn $entity): array
     {
-        $data = Crypt::seal($entity->toArray());
-
-        return $this->post("/v1/accommodations/$accommodation/reports/ntak/check_in", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/ntak/check_in", $entity->toArray());
     }
 
     /**
@@ -26,9 +23,7 @@ class Ntak extends NtakGuru
      */
     public function checkOut(string $accommodation, CheckOut $entity): array
     {
-        $data = Crypt::seal($entity->toArray());
-
-        return $this->post("/v1/accommodations/$accommodation/reports/ntak/check_out", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/ntak/check_out", $entity->toArray());
     }
 
     /**
@@ -36,10 +31,6 @@ class Ntak extends NtakGuru
      */
     public function index(string $accommodation, int $page = 1, int $perPage = 25): array
     {
-        if ($perPage > 100) {
-            $perPage = 100;
-        }
-
         return $this->get("/v1/accommodations/$accommodation/reports/ntak", [
             'page' => $page,
             'perPage' => $perPage,
@@ -51,9 +42,7 @@ class Ntak extends NtakGuru
      */
     public function reservation(string $accommodation, Reservation $entity): array
     {
-        $data = Crypt::seal($entity->toArray());
-
-        return $this->post("/v1/accommodations/$accommodation/reports/ntak/reservation", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/ntak/reservation", $entity->toArray());
     }
 
     /**
@@ -61,9 +50,7 @@ class Ntak extends NtakGuru
      */
     public function retry(string $accommodation, string $report, array $entity): array
     {
-        $data = Crypt::seal($entity);
-
-        return $this->put("/v1/accommodations/$accommodation/reports/ntak/$report", $data);
+        return $this->put("/v1/accommodations/$accommodation/reports/ntak/$report", $entity);
     }
 
     /**
@@ -71,9 +58,7 @@ class Ntak extends NtakGuru
      */
     public function roomChange(string $accommodation, RoomChange $entity): array
     {
-        $data = Crypt::seal($entity->toArray());
-
-        return $this->post("/v1/accommodations/$accommodation/reports/ntak/room_change", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/ntak/room_change", $entity->toArray());
     }
 
     /**

@@ -10,6 +10,8 @@ NTAK.GURU is wrapper for [NTAK](https://info.ntak.hu) to provide a much simpler 
 
 You can find the documentation [here](https://docs.ntak.guru).
 
+_Soon the documentation of this package will be migrated to the website._
+
 ## Installation
 
 You can install the package via composer:
@@ -203,8 +205,6 @@ $dailyClose = (new DailyClose())
     ->addOutOfOrderResidentialUnit(new ResidentialUnit())
     ->addResidentialUnitNight(new ResidentialUnitNight());
 
-$data = Crypt::seal($dailyClose->toArray());
-
 return $data; // JSON response to NTAK.guru
 ```
 
@@ -224,8 +224,6 @@ $dailyClose = (new DailyClose())
         available: $available = $this->faker->randomDigit(),
     )
     ->accommodationNotOperating();
-
-$data = Crypt::seal($dailyClose->toArray());
 
 return $data; // JSON response to NTAK.guru
 ```

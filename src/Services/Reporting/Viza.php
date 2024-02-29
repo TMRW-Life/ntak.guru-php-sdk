@@ -2,7 +2,6 @@
 
 namespace TmrwLife\NtakGuru\Services\Reporting;
 
-use TmrwLife\NtakGuru\Crypt;
 use TmrwLife\NtakGuru\Entities\Viza\CheckIn;
 use TmrwLife\NtakGuru\Entities\Viza\CheckOut;
 use TmrwLife\NtakGuru\Services\NtakGuru;
@@ -14,9 +13,7 @@ class Viza extends NtakGuru
      */
     public function checkIn(string $accommodation, CheckIn $entity): array
     {
-        $data = Crypt::seal($entity->toArray());
-
-        return $this->post("/v1/accommodations/$accommodation/reports/viza/check_in", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/viza/check_in", $entity->toArray());
     }
 
     /**
@@ -24,9 +21,7 @@ class Viza extends NtakGuru
      */
     public function checkOut(string $accommodation, CheckOut $entity): array
     {
-        $data = Crypt::seal($entity->toArray());
-
-        return $this->post("/v1/accommodations/$accommodation/reports/viza/check_out", $data);
+        return $this->post("/v1/accommodations/$accommodation/reports/viza/check_out", $entity->toArray());
     }
 
     /**
@@ -34,10 +29,6 @@ class Viza extends NtakGuru
      */
     public function index(string $accommodation, int $page = 1, int $perPage = 25): array
     {
-        if ($perPage > 100) {
-            $perPage = 100;
-        }
-
         return $this->get("/v1/accommodations/$accommodation/reports/viza", [
             'page' => $page,
             'perPage' => $perPage,
@@ -49,9 +40,7 @@ class Viza extends NtakGuru
      */
     public function retry(string $accommodation, string $report, array $entity): array
     {
-        $data = Crypt::seal($entity);
-
-        return $this->put("/v1/accommodations/$accommodation/reports/viza/$report", $data);
+        return $this->put("/v1/accommodations/$accommodation/reports/viza/$report", $entity);
     }
 
     /**
