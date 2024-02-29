@@ -2,6 +2,7 @@
 
 namespace TmrwLife\NtakGuru\Tests\Services;
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use TmrwLife\NtakGuru\Services\Certificate;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
@@ -36,9 +37,7 @@ class CertificateTest extends TestCase
         $this->assertSame($id, $response['payload']['id']);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testItGeneratesCertificate(): void
     {
         $gateway = Certificate::fake(null);
@@ -46,9 +45,7 @@ class CertificateTest extends TestCase
         $gateway->generate($this->faker->uuid());
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testItDestroysCertificate(): void
     {
         $gateway = Certificate::fake(null);
