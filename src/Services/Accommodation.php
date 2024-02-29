@@ -26,16 +26,13 @@ class Accommodation extends NtakGuru
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function index(int $page = 1, int $perPage = 25): array
+    public function index(int $page = 1, int $perPage = 25, ?string $query = null): array
     {
-        if ($perPage > 100) {
-            $perPage = 100;
-        }
-
-        return $this->get("/v1/accommodations", [
+        return $this->get("/v1/accommodations", array_filter([
             'page' => $page,
             'perPage' => $perPage,
-        ]);
+            'q' => $query,
+        ]));
     }
 
     /**
