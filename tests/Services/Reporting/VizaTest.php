@@ -116,40 +116,6 @@ class VizaTest extends TestCase
         $this->assertNull($report['payload']['response']);
     }
 
-    public function testItSendsStatusRequest(): void
-    {
-        $gateway = Viza::fake([
-            'payload' => [
-                'szoftverVerzio' => '1.0',
-                'allapotKod' => 'Ok',
-                'bekuldetlenUzenetekSzama' => '0',
-                'hibasUzenetekSzama' => '0',
-                'idoPecset' => '2021-02-07T19:46:52.573+01:00',
-            ],
-        ]);
-
-        $report = $gateway->status($this->faker->uuid());
-
-        $this->assertSame('1.0', $report['payload']['szoftverVerzio']);
-        $this->assertSame('Ok', $report['payload']['allapotKod']);
-        $this->assertSame('0', $report['payload']['bekuldetlenUzenetekSzama']);
-        $this->assertSame('0', $report['payload']['hibasUzenetekSzama']);
-        $this->assertSame('2021-02-07T19:46:52.573+01:00', $report['payload']['idoPecset']);
-    }
-
-    public function testItSendsUnsentDataRequest(): void
-    {
-        $gateway = Viza::fake([
-            'payload' => [
-                'eredmenyKod' => 'OK',
-            ],
-        ]);
-
-        $report = $gateway->unsentData($this->faker->uuid());
-
-        $this->assertSame('OK', $report['payload']['eredmenyKod']);
-    }
-
     public function testItThrowsExceptionIfTheRequestFails(): void
     {
         $guestDocumentManual = (new GuestDocument())

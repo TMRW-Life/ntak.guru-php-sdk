@@ -61,20 +61,4 @@ class Viza extends NtakGuru
     {
         return $this->get("/v1/accommodations/$accommodation/reports/viza/$report");
     }
-
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function status(string $accommodation): array
-    {
-        return $this->get("/v1/accommodations/$accommodation/reports/viza/status");
-    }
-
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function unsentData(string $accommodation): array
-    {
-        return $this->get("/v1/accommodations/$accommodation/reports/viza/unsent-data");
-    }
 }

@@ -253,12 +253,6 @@ $response = $reporting->checkIn($accommodationId, $checkIn);
 // Check-out report
 $checkOut = (new CheckOut())->setAttribute('...');
 $response = $reporting->checkOut($accommodationId, $checkOut);
-
-// Fetch status
-$response = $reporting->status($accommodationId);
-
-// Fetch unsent data
-$response = $reporting->unsentData($accommodationId);
 ```
 
 ### Entity builders
