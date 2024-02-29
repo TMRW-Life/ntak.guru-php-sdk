@@ -47,7 +47,7 @@ class CheckInTest extends TestCase
         $guest = (new Guest())
             ->setArrival($guestArrival = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setDeparture($guestDeparture = $this->faker->dateTime()->format('Y-m-d'))
-            ->setId($guestId = $this->faker->uuid())
+            ->setGuestNumber($guestId = $this->faker->uuid())
             ->setManual($guestDocumentManual)
             ->setScanned($guestDocumentScanned)
             ->setVisaDateOfEntry($guestVisaDateOfEntry = $this->faker->dateTime()->format('Y-m-d'))
@@ -64,7 +64,7 @@ class CheckInTest extends TestCase
                 [
                     'arrival' => $guestArrival,
                     'departure' => $guestDeparture,
-                    'id' => $guestId,
+                    'guestNumber' => $guestId,
                     'manual' => [
                         'birthFirstName' => $guestDocumentManualBirthFirstName,
                         'birthLastName' => $guestDocumentManualBirthLastName,

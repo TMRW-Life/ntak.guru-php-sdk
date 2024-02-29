@@ -8,7 +8,7 @@ class Guest implements Arrayable
 {
     protected ?string $arrival = null;
     protected ?string $departure = null;
-    protected ?string $id = null;
+    protected string|int|null $guestNumber = null;
     protected ?GuestDocument $manual = null;
     protected ?GuestDocument $scanned = null;
     protected ?string $visaDateOfEntry = null;
@@ -29,9 +29,9 @@ class Guest implements Arrayable
         return $this;
     }
 
-    public function setId(string $id): Guest
+    public function setGuestNumber(string $id): Guest
     {
-        $this->id = $id;
+        $this->guestNumber = $id;
 
         return $this;
     }
@@ -76,7 +76,7 @@ class Guest implements Arrayable
         return array_filter([
             'arrival' => $this->arrival,
             'departure' => $this->departure,
-            'id' => $this->id,
+            'guestNumber' => $this->guestNumber,
             'manual' => $this->manual?->toArray(),
             'scanned' => $this->scanned?->toArray(),
             'visaDateOfEntry' => $this->visaDateOfEntry,
