@@ -25,16 +25,6 @@ composer require tmrw-life/ntak-guru-php-sdk
 ## Accommodation
 
 ```php
-use TmrwLife\NtakGuru\Entities\Accommodation as AccommodationEntity;
-
-$accommodation = (new AccommodationEntity())
-    ->setName('My Awesome Accommodation')
-    ->setProviderName('Awesome provider Ltd')
-    ->setProviderTaxNumber('12345678-1-41')
-    ->setCountry('HU')
-    ->setPostcode('M1 1AA')
-    ->setLocality('Budapest');
-
 $gateway = \TmrwLife\NtakGuru\Services\Accommodation::setup([
     'accessToken' => '<your-access-token>',
     'isProduction' => false, // default: false
@@ -46,7 +36,15 @@ $accommodationId = '00000000-0000-0000-0000-0000000'; // Provided by NTAK.guru
 $response = $gateway->show($accommodationId);
 
 // Update accommodation
-$response = $gateway->update($accommodationId, $accommodation);
+$provider = (new \TmrwLife\NtakGuru\Entities\AccommodationProvider())
+    ->setProviderName('Awesome provider Ltd')
+    ->setProviderTaxNumber('12345678-1-41');
+$response = $gateway->updateProvider($accommodationId, $provider);
+
+$urls = (new \TmrwLife\NtakGuru\Entities\AccommodationUrl())
+    ->setDailyCloseUrl('https://api.your-pms.com/v1/ntakguru/daily-close')
+    ->setCallbackUrl('https://api.your-pms.com/v1/ntakguru/callback');
+$response = $gateway->updateProvider($accommodationId, $urls);
 
 // Activate accommodation
 $response = $gateway->activate($accommodationId);
