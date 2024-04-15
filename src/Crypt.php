@@ -24,7 +24,7 @@ class Crypt
 
             openssl_public_decrypt($encrypted, $decrypted, $publicKey);
 
-            return $decrypted;
+            return json_decode($decrypted, true, 512, JSON_THROW_ON_ERROR);
         } catch (Throwable) {
             return false;
         }
