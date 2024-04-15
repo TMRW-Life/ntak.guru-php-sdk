@@ -13,6 +13,10 @@ class Crypt
             return false;
         }
 
+        if (str_starts_with($base64String, 'Bearer ')) {
+            $base64String = substr($base64String, 7);
+        }
+
         try {
             $publicKey = self::loadPublicKey();
 
