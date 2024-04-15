@@ -2,7 +2,8 @@
 
 namespace TmrwLife\NtakGuru\Tests\Services;
 
-use TmrwLife\NtakGuru\Entities\Accommodation as AccommodationEntity;
+use TmrwLife\NtakGuru\Entities\AccommodationProvider;
+use TmrwLife\NtakGuru\Entities\AccommodationUrl;
 use TmrwLife\NtakGuru\Services\Accommodation;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
@@ -39,25 +40,46 @@ class AccommodationTest extends TestCase
         $this->assertSame($id, $response['payload']['id']);
     }
 
-    public function testItUpdatesTheAccommodation(): void
+    public function testItUpdatesTheAccommodationProvider(): void
     {
-        $accommodation = (new AccommodationEntity())
+        $accommodation = (new AccommodationProvider())
+            ->setProviderName($this->faker->company())
+            ->setProviderTaxNumber($this->faker->numerify('########-#-##'));
+
+        $gateway = Accommodation::fake([
+            'payload' => [
+                'id' => $id = $this->faker->uuid(),
+                'providerName' => $providerName = $this->faker->company(),
+                'providerTaxNumber' => $providerTaxNumber = $this->faker->numerify('########-#-##'),
+            ],
+        ]);
+
+        $response = $gateway->updateProvider($id, $accommodation);
+
+        $this->assertSame($id, $response['payload']['id']);
+        $this->assertSame($providerName, $response['payload']['providerName']);
+        $this->assertSame($providerTaxNumber, $response['payload']['providerTaxNumber']);
+    }
+
+    public function testItUpdatesTheAccommodationUrl(): void
+    {
+        $accommodation = (new AccommodationUrl())
             ->setCallbackUrl($this->faker->url())
             ->setDailyCloseUrl($this->faker->url());
 
         $gateway = Accommodation::fake([
             'payload' => [
                 'id' => $id = $this->faker->uuid(),
-                'callbackUrl' => $callbackUrl = $this->faker->uuid(),
-                'dailyCloseUrl' => $dailyCloseUrl = $this->faker->uuid(),
+                'dailyCloseUrl' => $dailyCloseUrl = $this->faker->url(),
+                'callbackUrl' => $callbackUrl = $this->faker->url(),
             ],
         ]);
 
-        $response = $gateway->update($id, $accommodation);
+        $response = $gateway->updateUrl($id, $accommodation);
 
         $this->assertSame($id, $response['payload']['id']);
-        $this->assertSame($callbackUrl, $response['payload']['callbackUrl']);
         $this->assertSame($dailyCloseUrl, $response['payload']['dailyCloseUrl']);
+        $this->assertSame($callbackUrl, $response['payload']['callbackUrl']);
     }
 
     public function testItActivatesTheAccommodation(): void

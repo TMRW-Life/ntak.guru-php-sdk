@@ -3,7 +3,8 @@
 namespace TmrwLife\NtakGuru\Services;
 
 use GuzzleHttp\RequestOptions;
-use TmrwLife\NtakGuru\Entities\Accommodation as AccommodationEntity;
+use TmrwLife\NtakGuru\Entities\AccommodationProvider;
+use TmrwLife\NtakGuru\Entities\AccommodationUrl;
 
 class Accommodation extends NtakGuru
 {
@@ -28,7 +29,7 @@ class Accommodation extends NtakGuru
      */
     public function index(int $page = 1, int $perPage = 25, ?string $query = null): array
     {
-        return $this->get("/v1/accommodations", array_filter([
+        return $this->get('/v1/accommodations', array_filter([
             'page' => $page,
             'perPage' => $perPage,
             'q' => $query,
@@ -46,7 +47,17 @@ class Accommodation extends NtakGuru
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function update(string $accommodation, AccommodationEntity $entity): array
+    public function updateProvider(string $accommodation, AccommodationProvider $entity): array
+    {
+        return $this->put("/v1/accommodations/$accommodation", [
+            RequestOptions::JSON => $entity->toArray(),
+        ]);
+    }
+
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function updateUrl(string $accommodation, AccommodationUrl $entity): array
     {
         return $this->put("/v1/accommodations/$accommodation", [
             RequestOptions::JSON => $entity->toArray(),

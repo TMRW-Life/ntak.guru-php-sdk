@@ -4,19 +4,20 @@ namespace TmrwLife\NtakGuru\Entities;
 
 use TmrwLife\NtakGuru\Interfaces\Arrayable;
 
-class Accommodation implements Arrayable
+class AccommodationUrl implements Arrayable
 {
     protected string $dailyCloseUrl;
-    protected string|null $callbackUrl;
 
-    public function setDailyCloseUrl(string $dailyCloseUrl): Accommodation
+    protected ?string $callbackUrl = null;
+
+    public function setDailyCloseUrl(string $dailyCloseUrl): AccommodationUrl
     {
         $this->dailyCloseUrl = $dailyCloseUrl;
 
         return $this;
     }
 
-    public function setCallbackUrl(?string $callbackUrl = null): Accommodation
+    public function setCallbackUrl(string $callbackUrl = null): AccommodationUrl
     {
         $this->callbackUrl = $callbackUrl;
 
