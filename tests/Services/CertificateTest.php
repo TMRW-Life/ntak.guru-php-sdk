@@ -13,15 +13,11 @@ class CertificateTest extends TestCase
 
     public function testItDownloadCertificateRequest(): void
     {
-        $gateway = Certificate::fake([
-            'payload' => [
-                'certificateRequest' => $csr = $this->faker->text(),
-            ],
-        ]);
+        $gateway = Certificate::fake($csr = $this->faker->text());
 
         $response = $gateway->download($this->faker->uuid());
 
-        $this->assertSame($csr, $response['payload']['certificateRequest']);
+        $this->assertSame($csr, $response);
     }
 
     public function testItUploadsTheCertificate(): void
@@ -32,7 +28,7 @@ class CertificateTest extends TestCase
             ],
         ]);
 
-        $response = $gateway->upload($id, $this->faker->text(), $this->faker->word());
+        $response = $gateway->upload($id, $this->faker->text());
 
         $this->assertSame($id, $response['payload']['id']);
     }
