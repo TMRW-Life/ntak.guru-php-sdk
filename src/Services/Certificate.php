@@ -2,14 +2,22 @@
 
 namespace TmrwLife\NtakGuru\Services;
 
+use GuzzleHttp\RequestOptions;
+
 class Certificate extends NtakGuru
 {
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function download(string $accommodation): array
+    public function download(string $accommodation): string
     {
-        return $this->get("/v1/accommodations/$accommodation/certificates");
+        $response = $this->client->get("/v1/accommodations/$accommodation/certificates", [
+            RequestOptions::HEADERS => [
+                'Accept' => 'application/pkcs10',
+            ],
+        ]);
+
+        return $response->getBody()->getContents();
     }
 
     /**
