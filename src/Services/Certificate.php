@@ -31,11 +31,10 @@ class Certificate extends NtakGuru
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function upload(string $accommodation, string $certificate, string $reportingId): array
+    public function upload(string $accommodation, string $certificate): array
     {
         return $this->put("/v1/accommodations/$accommodation/certificates", [
             'certificate' => $certificate,
-            'reporting_id' => $reportingId,
         ]);
     }
 

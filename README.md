@@ -72,7 +72,7 @@ $gateway->generate($accommodationId);
 $gateway->download($accommodationId);
 
 // Upload certificate (certificate)
-$gateway->upload($accommodationId, '<content-of-certificate', '<reporting_id-provided-by-government-NTAK>');
+$gateway->upload($accommodationId, '<content-of-certificate');
 
 // Delete certificate (private key and certificate request)
 $gateway->destroy($accommodationId);

@@ -28,7 +28,7 @@ class CertificateTest extends TestCase
             ],
         ]);
 
-        $response = $gateway->upload($id, $this->faker->text(), $this->faker->word());
+        $response = $gateway->upload($id, $this->faker->text());
 
         $this->assertSame($id, $response['payload']['id']);
     }
