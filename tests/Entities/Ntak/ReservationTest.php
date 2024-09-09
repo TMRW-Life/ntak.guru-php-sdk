@@ -8,10 +8,12 @@ use TmrwLife\NtakGuru\Enums\ResidentialUnitType;
 use TmrwLife\NtakGuru\Enums\SalesChannel;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
+use TmrwLife\NtakGuru\Tests\Traits\WithSafeCountry;
 
 class ReservationTest extends TestCase
 {
     use WithFaker;
+    use WithSafeCountry;
 
     public function testItBuildsTheReservationArray(): void
     {
@@ -20,7 +22,7 @@ class ReservationTest extends TestCase
             ->setOccurredAt($occurredAt = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setReservedAt($reservedAt = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setCancelled($cancelled = $this->faker->boolean())
-            ->setNationality($nationality = $this->faker->countryCode())
+            ->setNationality($nationality = $this->safeCountry())
             ->setArrival($arrival = $this->faker->dateTime()->format('Y-m-d'))
             ->setDeparture($departure = $this->faker->dateTime()->format('Y-m-d'))
             ->setSalesChannel($salesChannel = SalesChannel::DIRECT_ONLINE)
@@ -34,7 +36,7 @@ class ReservationTest extends TestCase
             'occurredAt' => $occurredAt,
             'reservedAt' => $reservedAt,
             'cancelled' => $cancelled,
-            'nationality' => $nationality,
+            'nationality' => $nationality->value,
             'arrival' => $arrival,
             'departure' => $departure,
             'salesChannel' => $salesChannel->value,

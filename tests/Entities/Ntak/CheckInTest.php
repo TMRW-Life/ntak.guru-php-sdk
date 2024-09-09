@@ -10,10 +10,12 @@ use TmrwLife\NtakGuru\Enums\ResidentialUnitType;
 use TmrwLife\NtakGuru\Enums\TouristTax;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
+use TmrwLife\NtakGuru\Tests\Traits\WithSafeCountry;
 
 class CheckInTest extends TestCase
 {
     use WithFaker;
+    use WithSafeCountry;
 
     public function testItBuildsTheCheckInArray(): void
     {
@@ -22,9 +24,9 @@ class CheckInTest extends TestCase
             ->setGuestNumber($guestNumber = $this->faker->uuid())
             ->setYearOfBirth($yearOfBirth = (int) $this->faker->year())
             ->setTouristTaxStatus(TouristTax::OBLIGED)
-            ->setNationalityCountryCode($nationality = $this->faker->countryCode())
+            ->setNationalityCountryCode($nationality = $this->safeCountry())
             ->setResidencePostCode($postCode = $this->faker->postcode())
-            ->setResidenceCountryCode($country = $this->faker->countryCode());
+            ->setResidenceCountryCode($country = $this->safeCountry());
 
         $unit = (new ResidentialUnit())
             ->setType(ResidentialUnitType::APARTMENT)
@@ -49,9 +51,9 @@ class CheckInTest extends TestCase
                     'guestNumber' => $guestNumber,
                     'touristTaxStatus' => TouristTax::OBLIGED->value,
                     'yearOfBirth' => $yearOfBirth,
-                    'residenceCountryCode' => $country,
+                    'residenceCountryCode' => $country->value,
                     'residencePostCode' => $postCode,
-                    'nationalityCountryCode' => $nationality,
+                    'nationalityCountryCode' => $nationality->value,
                 ],
             ],
             'occupiedResidentialUnit' => [

@@ -19,10 +19,12 @@ use TmrwLife\NtakGuru\Enums\SalesChannel;
 use TmrwLife\NtakGuru\Enums\TouristTax;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
+use TmrwLife\NtakGuru\Tests\Traits\WithSafeCountry;
 
 class DailyCloseTest extends TestCase
 {
     use WithFaker;
+    use WithSafeCountry;
 
     public function testItBuildsTheDailyClose(): void
     {
@@ -98,9 +100,9 @@ class DailyCloseTest extends TestCase
         $residentialUnitNightGuest = (new Guest())
             ->setGender($residentialUnitNightGuestGender = Gender::MALE)
             ->setGuestNumber($residentialUnitNightGuestGuestNumber = $this->faker->randomDigit())
-            ->setNationalityCountryCode($residentialUnitNightGuestNationalityCountryCode = $this->faker->countryCode())
+            ->setNationalityCountryCode($residentialUnitNightGuestNationalityCountryCode = $this->safeCountry())
             ->setResidencePostCode($residentialUnitNightGuestResidencePostCode = $this->faker->postcode())
-            ->setResidenceCountryCode($residentialUnitNightGuestResidenceCountryCode = $this->faker->countryCode())
+            ->setResidenceCountryCode($residentialUnitNightGuestResidenceCountryCode = $this->safeCountry())
             ->setTouristTaxStatus($residentialUnitNightGuestTouristTax = TouristTax::OBLIGED)
             ->setYearOfBirth($residentialUnitNightGuestYearOfBirth = (int)$this->faker->year());
 
@@ -209,9 +211,9 @@ class DailyCloseTest extends TestCase
 
         $this->assertSame($residentialUnitNightGuestGender->value, $dailyClose['residentialUnitNights'][0]['guests'][0]['gender']);
         $this->assertSame($residentialUnitNightGuestGuestNumber, $dailyClose['residentialUnitNights'][0]['guests'][0]['guestNumber']);
-        $this->assertSame($residentialUnitNightGuestNationalityCountryCode, $dailyClose['residentialUnitNights'][0]['guests'][0]['nationalityCountryCode']);
+        $this->assertSame($residentialUnitNightGuestNationalityCountryCode->value, $dailyClose['residentialUnitNights'][0]['guests'][0]['nationalityCountryCode']);
         $this->assertSame($residentialUnitNightGuestResidencePostCode, $dailyClose['residentialUnitNights'][0]['guests'][0]['residencePostCode']);
-        $this->assertSame($residentialUnitNightGuestResidenceCountryCode, $dailyClose['residentialUnitNights'][0]['guests'][0]['residenceCountryCode']);
+        $this->assertSame($residentialUnitNightGuestResidenceCountryCode->value, $dailyClose['residentialUnitNights'][0]['guests'][0]['residenceCountryCode']);
         $this->assertSame($residentialUnitNightGuestTouristTax->value, $dailyClose['residentialUnitNights'][0]['guests'][0]['touristTaxStatus']);
         $this->assertSame($residentialUnitNightGuestYearOfBirth, $dailyClose['residentialUnitNights'][0]['guests'][0]['yearOfBirth']);
 

@@ -3,6 +3,7 @@
 namespace TmrwLife\NtakGuru\Entities\Ntak;
 
 use TmrwLife\NtakGuru\Enums\Gender;
+use TmrwLife\NtakGuru\Enums\NtakCountry;
 use TmrwLife\NtakGuru\Enums\TouristTax;
 use TmrwLife\NtakGuru\Interfaces\Arrayable;
 
@@ -12,9 +13,9 @@ class Guest implements Arrayable
 
     protected int|string $guestNumber;
 
-    protected string $nationalityCountryCode;
+    protected NtakCountry $nationalityCountryCode;
 
-    protected string $residenceCountryCode;
+    protected NtakCountry $residenceCountryCode;
 
     protected string $residencePostCode;
 
@@ -36,14 +37,14 @@ class Guest implements Arrayable
         return $this;
     }
 
-    public function setNationalityCountryCode(string $nationalityCountryCode): Guest
+    public function setNationalityCountryCode(NtakCountry $nationalityCountryCode): Guest
     {
         $this->nationalityCountryCode = $nationalityCountryCode;
 
         return $this;
     }
 
-    public function setResidenceCountryCode(string $residenceCountryCode): Guest
+    public function setResidenceCountryCode(NtakCountry $residenceCountryCode): Guest
     {
         $this->residenceCountryCode = $residenceCountryCode;
 
@@ -78,9 +79,9 @@ class Guest implements Arrayable
             'guestNumber' => $this->guestNumber,
             'touristTaxStatus' => $this->touristTaxStatus->value,
             'yearOfBirth' => $this->yearOfBirth,
-            'residenceCountryCode' => $this->residenceCountryCode,
+            'residenceCountryCode' => $this->residenceCountryCode->value,
             'residencePostCode' => $this->residencePostCode,
-            'nationalityCountryCode' => $this->nationalityCountryCode,
+            'nationalityCountryCode' => $this->nationalityCountryCode->value,
         ];
     }
 }
