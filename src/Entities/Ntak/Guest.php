@@ -13,9 +13,9 @@ class Guest implements Arrayable
 
     protected int|string $guestNumber;
 
-    protected NtakCountry $nationalityCountryCode;
+    protected NtakCountry|string $nationalityCountryCode;
 
-    protected NtakCountry $residenceCountryCode;
+    protected NtakCountry|string $residenceCountryCode;
 
     protected string $residencePostCode;
 
@@ -37,14 +37,14 @@ class Guest implements Arrayable
         return $this;
     }
 
-    public function setNationalityCountryCode(NtakCountry $nationalityCountryCode): Guest
+    public function setNationalityCountryCode(NtakCountry|string $nationalityCountryCode): Guest
     {
         $this->nationalityCountryCode = $nationalityCountryCode;
 
         return $this;
     }
 
-    public function setResidenceCountryCode(NtakCountry $residenceCountryCode): Guest
+    public function setResidenceCountryCode(NtakCountry|string $residenceCountryCode): Guest
     {
         $this->residenceCountryCode = $residenceCountryCode;
 
@@ -79,9 +79,13 @@ class Guest implements Arrayable
             'guestNumber' => $this->guestNumber,
             'touristTaxStatus' => $this->touristTaxStatus->value,
             'yearOfBirth' => $this->yearOfBirth,
-            'residenceCountryCode' => $this->residenceCountryCode->value,
+            'residenceCountryCode' => $this->residenceCountryCode instanceof NtakCountry
+                ? $this->residenceCountryCode->value
+                : $this->residenceCountryCode,
             'residencePostCode' => $this->residencePostCode,
-            'nationalityCountryCode' => $this->nationalityCountryCode->value,
+            'nationalityCountryCode' => $this->nationalityCountryCode instanceof NtakCountry
+                ? $this->nationalityCountryCode->value
+                : $this->nationalityCountryCode,
         ];
     }
 }

@@ -10,9 +10,7 @@ trait WithSafeCountry
 
     protected function safeCountry(?string $country = null): NtakCountry
     {
-        if ($country === null) {
-            $country = $this->faker->countryCode();
-        }
+        $country ??= $this->faker->countryCode();
 
         return NtakCountry::tryFrom($country) ?? NtakCountry::OTHER;
     }
