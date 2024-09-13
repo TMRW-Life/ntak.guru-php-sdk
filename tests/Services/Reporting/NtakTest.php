@@ -17,10 +17,12 @@ use TmrwLife\NtakGuru\Enums\TouristTax;
 use TmrwLife\NtakGuru\Services\Reporting\Ntak;
 use TmrwLife\NtakGuru\Tests\TestCase;
 use TmrwLife\NtakGuru\Tests\Traits\WithFaker;
+use TmrwLife\NtakGuru\Tests\Traits\WithSafeCountry;
 
 class NtakTest extends TestCase
 {
     use WithFaker;
+    use WithSafeCountry;
 
     public function testItSendsCheckInRequest(): void
     {
@@ -29,9 +31,9 @@ class NtakTest extends TestCase
             ->setGuestNumber($this->faker->uuid())
             ->setYearOfBirth($this->faker->year())
             ->setTouristTaxStatus(TouristTax::OBLIGED)
-            ->setNationalityCountryCode($this->faker->countryCode())
+            ->setNationalityCountryCode($this->safeCountry())
             ->setResidencePostCode($this->faker->postcode())
-            ->setResidenceCountryCode($this->faker->countryCode());
+            ->setResidenceCountryCode($this->safeCountry());
 
         $unit = (new ResidentialUnit())
             ->setType(ResidentialUnitType::APARTMENT)
@@ -77,9 +79,9 @@ class NtakTest extends TestCase
             ->setGuestNumber($this->faker->uuid())
             ->setYearOfBirth((int) $this->faker->year())
             ->setTouristTaxStatus(TouristTax::OBLIGED)
-            ->setNationalityCountryCode($this->faker->countryCode())
+            ->setNationalityCountryCode($this->safeCountry())
             ->setResidencePostCode($this->faker->postcode())
-            ->setResidenceCountryCode($this->faker->countryCode());
+            ->setResidenceCountryCode($this->safeCountry());
 
         $unit = (new ResidentialUnit())
             ->setType(ResidentialUnitType::APARTMENT)
@@ -125,7 +127,7 @@ class NtakTest extends TestCase
             ->setOccurredAt($this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setReservedAt($this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setCancelled($this->faker->boolean())
-            ->setNationality($this->faker->countryCode())
+            ->setNationality($this->safeCountry())
             ->setArrival($this->faker->dateTime()->format('Y-m-d'))
             ->setDeparture($this->faker->dateTime()->format('Y-m-d'))
             ->setSalesChannel(SalesChannel::DIRECT_ONLINE)
@@ -164,9 +166,9 @@ class NtakTest extends TestCase
             ->setGuestNumber($this->faker->uuid())
             ->setYearOfBirth((int) $this->faker->year())
             ->setTouristTaxStatus(TouristTax::OBLIGED)
-            ->setNationalityCountryCode($this->faker->countryCode())
+            ->setNationalityCountryCode($this->safeCountry())
             ->setResidencePostCode($this->faker->postcode())
-            ->setResidenceCountryCode($this->faker->countryCode());
+            ->setResidenceCountryCode($this->safeCountry());
 
         $unit1 = (new ResidentialUnit())
             ->setType(ResidentialUnitType::APARTMENT)
@@ -221,7 +223,7 @@ class NtakTest extends TestCase
             ->setOccurredAt($this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setReservedAt($this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setCancelled($this->faker->boolean())
-            ->setNationality($this->faker->countryCode())
+            ->setNationality($this->safeCountry())
             ->setArrival($this->faker->dateTime()->format('Y-m-d'))
             ->setDeparture($this->faker->dateTime()->format('Y-m-d'))
             ->setSalesChannel(SalesChannel::DIRECT_ONLINE)

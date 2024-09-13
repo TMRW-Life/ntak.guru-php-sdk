@@ -3,6 +3,7 @@
 namespace TmrwLife\NtakGuru\Entities\Ntak;
 
 use TmrwLife\NtakGuru\Enums\MarketSegment;
+use TmrwLife\NtakGuru\Enums\NtakCountry;
 use TmrwLife\NtakGuru\Enums\ResidentialUnitType as ResidentialUnitEnum;
 use TmrwLife\NtakGuru\Enums\SalesChannel;
 use TmrwLife\NtakGuru\Interfaces\Context;
@@ -23,7 +24,7 @@ class Reservation implements Context
 
     protected ?MarketSegment $marketSegment = null;
 
-    protected ?string $nationality = null;
+    protected NtakCountry|string|null $nationality = null;
 
     protected ?string $occurredAt = null;
 
@@ -85,7 +86,7 @@ class Reservation implements Context
         return $this;
     }
 
-    public function setNationality(string $nationality): Reservation
+    public function setNationality(NtakCountry|string $nationality): Reservation
     {
         $this->nationality = $nationality;
 
@@ -127,7 +128,7 @@ class Reservation implements Context
             'occurredAt' => $this->occurredAt,
             'reservedAt' => $this->reservedAt,
             'cancelled' => $this->cancelled,
-            'nationality' => $this->nationality,
+            'nationality' => $this->nationality instanceof NtakCountry ? $this->nationality->value : $this->nationality,
             'arrival' => $this->arrival,
             'departure' => $this->departure,
             'salesChannel' => $this->salesChannel?->value,
