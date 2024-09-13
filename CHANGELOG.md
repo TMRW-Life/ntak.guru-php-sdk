@@ -2,6 +2,15 @@
 
 All notable changes to `ntak-guru-php-sdk` will be documented in this file.
 
+## v1.2.0 - 2024-09-13
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.1.0 to 2.2.0 by @dependabot in https://github.com/TMRW-Life/ntak.guru-php-sdk/pull/31
+* Add official NTAK countries by @Otisz in https://github.com/TMRW-Life/ntak.guru-php-sdk/pull/32
+
+**Full Changelog**: https://github.com/TMRW-Life/ntak.guru-php-sdk/compare/v1.1.0...v1.2.0
+
 ## v1.1.0 - 2024-06-04
 
 ### What's Changed
