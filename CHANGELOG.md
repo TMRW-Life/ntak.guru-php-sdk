@@ -2,6 +2,15 @@
 
 All notable changes to `ntak-guru-php-sdk` will be documented in this file.
 
+## v1.3.0 - 2024-11-06
+
+### What's Changed
+
+* BREAKING: `guestNumber` has been renamed to `id` in VIZA reports
+* BREAKING: `setGuestNumber` has been renamed to `setId` in VIZA reports
+
+**Full Changelog**: https://github.com/TMRW-Life/ntak.guru-php-sdk/compare/v1.2.0...v1.3.0
+
 ## v1.2.0 - 2024-09-13
 
 ### What's Changed
