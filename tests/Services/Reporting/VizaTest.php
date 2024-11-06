@@ -50,7 +50,7 @@ class VizaTest extends TestCase
         $guest = (new Guest())
             ->setArrival($this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setDeparture($this->faker->dateTime()->format('Y-m-d'))
-            ->setGuestNumber($this->faker->uuid())
+            ->setId($this->faker->uuid())
             ->setManual($guestDocumentManual)
             ->setScanned($guestDocumentScanned)
             ->setVisaDateOfEntry($this->faker->dateTime()->format('Y-m-d'))
@@ -89,7 +89,7 @@ class VizaTest extends TestCase
         $checkOut = (new CheckOut())
             ->setOccurredAt($this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->addGuest(
-                guestNumber: $this->faker->uuid(),
+                id: $this->faker->uuid(),
                 departure: $this->faker->dateTime()->format('Y-m-d H:i:s'),
             );
 
@@ -149,7 +149,7 @@ class VizaTest extends TestCase
         $guest = (new Guest())
             ->setArrival($this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->setDeparture($this->faker->dateTime()->format('Y-m-d'))
-            ->setGuestNumber($this->faker->uuid())
+            ->setId($this->faker->uuid())
             ->setManual($guestDocumentManual)
             ->setScanned($guestDocumentScanned)
             ->setVisaDateOfEntry($this->faker->dateTime()->format('Y-m-d'))

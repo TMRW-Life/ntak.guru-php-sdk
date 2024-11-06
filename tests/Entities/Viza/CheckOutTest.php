@@ -15,14 +15,14 @@ class CheckOutTest extends TestCase
         $checkOut = (new CheckOut())
             ->setOccurredAt($occurredAt = $this->faker->dateTime()->format('Y-m-d H:i:s'))
             ->addGuest(
-                guestNumber: $guestId = $this->faker->uuid(),
+                id: $guestId = $this->faker->uuid(),
                 departure: $departure = $this->faker->dateTime()->format('Y-m-d H:i:s'),
             );
 
         $this->assertSame([
             'guests' => [
                 [
-                    'guestNumber' => $guestId,
+                    'id' => $guestId,
                     'departure' => $departure,
                 ],
             ],
