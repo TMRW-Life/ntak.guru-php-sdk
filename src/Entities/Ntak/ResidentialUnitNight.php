@@ -10,7 +10,7 @@ class ResidentialUnitNight implements Arrayable
 {
     protected bool $dayUse = false;
     protected array $expenses = [];
-    protected array $guests;
+    protected array $guests = [];
     protected array $loads = [];
     protected MarketSegment $marketSegment;
     protected int|string $reservationNumber;
