@@ -2,6 +2,10 @@
 
 All notable changes to `ntak-guru-php-sdk` will be documented in this file.
 
+## v1.4.0 - 2025-12-02
+
+TMRW-150 fixing array intitialization
+
 ## v1.3.0 - 2024-11-06
 
 ### What's Changed
